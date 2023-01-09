@@ -21,11 +21,16 @@ class MainController extends Controller
 
   public function createPDF(){
     $data['skills'] = Skill::all();
+    $data['experiences'] = Experience::all();
+    $data['educations'] = Education::all();
     $pdf = PDF::loadView('cv', $data);
     return $pdf->download('cv', $data);
   }
 
   public function simple(){
+    $data['skills'] = Skill::all();
+    $data['experiences'] = Experience::all();
+    $data['educations'] = Education::all(); 
     $data['skills'] = Skill::all();
     return view('cv', $data);
   }
