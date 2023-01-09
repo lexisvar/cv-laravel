@@ -15,3 +15,5 @@ use App\Http\Controllers\MainController;
 */
 
 Route::get('/', [MainController::class, 'index']);
+Route::get('/simple', [MainController::class, 'simple']);
+Route::get('/export', [MainController::class, 'createPDF']);
