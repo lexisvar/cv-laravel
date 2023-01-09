@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('start_date');
             $table->string('finish_date');
+            $table->string('study_name');
+            $table->string('study_title');
             $table->string('college');
             $table->string('description');
             $table->timestamps();

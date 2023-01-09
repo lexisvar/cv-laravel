@@ -12,7 +12,8 @@ class MainController extends Controller
   public function index()
   {
     $data['skills'] = Skill::all();
-    $data['experiences'] = Experience::all();  
+    $data['experiences'] = Experience::all();
+    $data['educations'] = Education::all();  
   
     return view('home', $data);
   }
