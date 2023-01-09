@@ -444,8 +444,8 @@
       return age;
       }
 
-      div= document.getElementById("age");
-      div.innerHTML = getAge("1989/09/06");
+      span = document.getElementById("age");
+      span.innerHTML = getAge("1989/09/06");
     </script>
   </body>
 </html>
