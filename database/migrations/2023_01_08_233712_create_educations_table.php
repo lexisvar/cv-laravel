@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('start_date');
             $table->string('finish_date');
             $table->string('college');
-            $table->string('city');
+            $table->string('description');
             $table->timestamps();
         });
     }
