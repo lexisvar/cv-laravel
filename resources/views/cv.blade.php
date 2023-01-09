@@ -1,136 +1,140 @@
-<!DOCTYPE html>
-<html>
-
+<!DOCTYPE HTML>
+<html lang="en-US">
 <head>
-	<title>Sam Rubin Resume</title>
-	<link rel="stylesheet" href="css/cv.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+	<meta charset="UTF-8">
+	<title>CV Alexis Vargas</title>
+	
+	<link rel="stylesheet" href="css/cv.css" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
-
 <body>
-	<main id="cv">
-		<section class="top">
-			<div class="uppercase name">
-				<a href="https://samrubin.co">Sam Rubin</a>
-			</div>
-			<div class="uppercase role">Full Stack Software Engineer</div>
-			<div>
-				<ul class="contact">
-					<li><a href="https://samrubin.co">samrubin.co</a></li>
-					<li><a href="mailto:sam.m.rubin@gmail.com">sam.m.rubin@gmail.com</a></li>
-					<li><a href="tel:8049370414">(703) 474-5339</a></li>
-					<li>
-						<a href="https://www.linkedin.com/in/samrubin1"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-						<a href="https://github.com/smrubin"><i class="fa fa-github" aria-hidden="true"></i></a>
-						<a href="https://twitter.com/sammrubin"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-						<a href="http://stackoverflow.com/users/6136026/smrubin"><i class="fa fa-stack-overflow" aria-hidden="true"></i></a>
-					</li>
-				</ul>
-			</div>
+	<div class="container">
+	<header>
+		<h1 id="name">Alexis Vargas</h1>
+		
+		<div id="designation">
+		
+			<span class="title">Full Stack Developer (PHP, Ruby, VueJS)</span>
+			<span class="organization">Shore Canada</span>
+		
+		</div>
+		
+		<div class="contact">
+			<div class="email">lexisvar@gmail.com</div>
+		</div>
+		
+	</header>
+	
+	<div class="content" role=main>
+	
+		<section id="objective">
+			<h2 class="title">About</h2>
+			<div class="description">
+				<p>
+					Hello! I am Anthony Barnett. Web Developer, Graphic Designer and Photographer.
+
+          Creative CV is a HTML resume template for professionals. Built with Bootstrap 4, 
+          Now UI Kit and FontAwesome, this modern and responsive design template is perfect to 
+          showcase your portfolio, skills and experience. Learn More
+				</p>			
+			</div> <!-- end description -->
+      
 		</section>
 
-		<section class="middle">
-			<div id="work">
-				<div class="header">Professional Experience</div>
-				<div class="content">
-					<div class="job">Deloitte Digital, Software Engineer II<span class="year">2015-Present</span></div>
-					<ul class="custom-bullet">
-						<li>Develop and deliver responsive and progressive web applications in an agile project environment</li>
-						<li>Responsibilities include leading app development teams, rapid prototyping of features, writing front-end and server-side code, system architecture design, provisioning cloud services, creating CI/CD pipelines, and mentoring junior developers</li>
-						<li>Technologies deployed to production include progressive web apps (PWAs), search engines, relational and NoSQL databases, automated database backups, user authentication (AWS Cognito, JWT), RESTful APIs, Jenkins pipelines, Amazon Web Services (EC2, RDS, S3, IAM), build tools (Gulp, Grunt, Webpack), testing and code coverage (Jasmine, Karma), Docker, and HIPAA compliant environments</li>
-						<li>Crafted and executed Deloitte's nationwide new hire training program 3 years in a row, influencing several thousand individuals</li>
-					</ul>
-
-					<div class="projects">
-						<div class="project">
-							<div class="project-header">Project Spotlight #1: NIEM Movement, beta.movement.niem.gov</div>
-							<ul class="custom-bullet">
-								<li>Led application architecture and built an open-source progressive web app (PWA) for the National Information Exchange Model, allowing customers to search a dictionary of over 15,000 items and download the JSON schema for any subset of these elements</li>
-								<li>Impact: Established open-source presence for client by setting up issues logs, Projects board, Wiki, and a CI/CD pipeline (AWS, Jenkins, Docker) that builds the app on post-commit hooks</li>
-							</ul>
-						</div>
-
-						<div class="project">
-							<div class="project-header">Project Spotlight #2: Z-CAN Product Suite, zcanpr.org</div>
-							<ul class="custom-bullet">
-								<li>Built three web apps for the CDC Zika Contraception Access Network (Z-CAN), which allow users to search for nearby clinics, access several dozen pages of content, sort and filter over 200 FAQ's, and allow clinic providers to securely upload patient forms into a HIPAA-compliant environment complete with login and authentication, PDF storage, form field parsing, and CSV download</li>
-								<li>Led day-to-day engineering team, performed code reviews, and mentored junior developers</li>
-								<li>Impact: The apps led to over 10,000 in-clinic patient visits for the CDC, with 94% of visiting women obtaining a form of contraception</li>
-							</ul>
-						</div>
-					</div> <!-- /projects -->
-
-					<div class="job">Deloitte Consulting, Business Technology Analyst<span class="year">2014-'15</span></div>
-					<ul class="custom-bullet">
-						<li>Improved product UX and performance via web solutions using Grails, MySQL, and JavaScript in an agile project environment</li>
-						<li>Wrote VBA scripts to reduce managers' bi-weekly project update time by 92% (from six hours to under thirty minutes)</li>
-					</ul>
-
-					<div class="job">Foot & Ankle Specialists of VA, Web Designer / Developer<span class="year">2014</span></div>
-					<ul class="custom-bullet">
-						<li>Designed and developed responsive website for the practice, including an online appointment request form that automatically sends e-mail notifications to office front desk via Google Sheets, resulting in over 100 new patients in first year of website operation</li>
-					</ul>
-				</div>
-			</div> <!-- /work -->
-
-			<div id="skills">
-				<div class="header">Skills</div>
-				<div class="content">
-					<ul class="skills-list">
-						<li>CSS / Sass</li>
-						<li>Firebase</li>
-						<li>JavaScript (ES6)</li>
-						<li>jQuery</li>
-						<li>AngularJS</li>
-						<li>Karma / Jasmine</li>
-						<li>Node / Express</li>
-						<li>MongoDB</li>
-						<li>MySQL</li>
-						<li>Docker</li>
-						<li>Jenkins</li>
-						<li>nginx</li>
-						<li>Apache Solr</li>
-						<li>AWS</li>
-						<li>Bash Scripting</li>
-						<li>Git</li>
-						<li>Gulp / Grunt</li>
-						<li>Webpack</li>
-					</ul>
-				</div>
-			</div>
-
-			<div class="split-pane">
-				<div id="education">
-					<div class="header">Education</div>
-					<div class="content">
-						<div class="img-with-text">
-							<div id="uva" class="img-round border"></div>
-							<ul><span class="job">University of Virginia<br>B.S. Systems Engineering</span>
-								<li>Concentration: Computer Science</li>
-								<li>Minor: Business</li>
-								<li>Major GPA: 3.80/4.0</li>
-								<li>Cum GPA: 3.71/4.0</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-
-				<div id="research">
-					<div class="header">Open-Source Projects</div>
-					<div class="content">
-						<ul>
-							<li><a class="project" href="https://samrubin.co">samrubin.co</a> Personal and professional web development blog and portfolio built with Jeykll and AMP</li>
-							<li><a href="https://bot.api.ai/804067d3-3bac-4e60-9b6e-91288ae97836" class="project">Alex Trebot</a> Jeopardy chatbot built on api.ai</li>
-							<li><a class="project" href="https://github.com/smrubin/honeycombs.js">honeycombs.js</a> jQuery plugin for producing a responsive grid of hexagons</li>
-							<li><a class="project" href="http://dumptrumpgame.com">dumptrumpgame</a> Parody HTML5 Canvas Game for the web</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-
-			<footer>This Resume Built by Sam, Powered by HTML & CSS</footer>
-
+    
+		
+    
+		<section id="experience">
+			<h2 class="title">Experience</h2>
+			<div class="description">				
+        @foreach ($experiences as $experience)
+          <!-- Project 1 -->
+          <section class="project">
+            <h3 class="title">{{$experience->occupation}}</h3>
+            <div class="meta">
+              <span class="field">{{$experience->company}}</span> <span class="date">{{$experience->start_date}} - {{$experience->finish_date}}</span>
+            </div>
+            <p class="description">{{$experience->description}} </p>
+          </section> <!-- end project description -->
+        @endforeach
+      </div>
 		</section>
-	</main>
+			
+		<section id="education">
+			<h2 class="title">Education</h2>
+			<div class="description">				
+        @foreach ($educations as $education)
+          <!-- Project 1 -->
+          <section class="project">
+            <h3 class="title">{{$education->occupation}}</h3>
+            <div class="meta">
+              <span class="field">{{$education->college}}</span> <span class="date">{{$education->start_date}} - {{$education->finish_date}}</span>
+            </div>
+            <p class="description">{{$education->description}} </p>
+          </section> <!-- end project description -->
+        @endforeach
+      </div>
+		</section>
+
+    <section id="skills">
+			<h2 class="title">Skills</h2>
+			<div class="description">				
+        @foreach ($skills as $skill)
+          
+          <section class="skill">
+            <div class="w3-light-grey">
+              <div class="w3-grey" style="height:24px;width:<?= $skill->percent ?>%;"> {{$skill->percent}}% </div>
+            </div><br>
+          </section> 
+        @endforeach
+      </div>
+		</section>
+	
+
+		<!-- Training/ seminars -->
+		
+		
+		
+		<!-- Scholistics Achievements -->
+		
+		
+		
+		<!-- Technical Skills -->
+		
+		
+		<!-- Extra-Curricular Activities -->
+		
+		
+		<!-- Personal Informations -->
+		
+		
+		<!-- References -->
+		
+		
+		
+		<!-- Declarations -->
+
+	
+		<!-- signatory -->
+	
+	
+	
+	
+	</div> <!-- end main content -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	</div> <!-- end container -->
+	
 </body>
 </html>
