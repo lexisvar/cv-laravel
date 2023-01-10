@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\SkillsController;
 use App\Http\Controllers\ExperienceController;
+use App\Http\Controllers\EducationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,6 +44,13 @@ Route::middleware('auth')->group(function () {
   Route::post('/experience/create', [ExperienceController::class, 'create'])->name('experience.create');
   Route::patch('/experience/{id}/update', [ExperienceController::class, 'update'])->name('experience.update');
   Route::delete('/experience/{id}', [ExperienceController::class, 'destroy'])->name('experience.destroy');
+
+  Route::get('/education', [EducationController::class, 'index'])->name('education');
+  Route::get('/education/new', [EducationController::class, 'new'])->name('education.new');
+  Route::get('/education/{id}/edit', [EducationController::class, 'edit'])->name('education.edit');
+  Route::post('/education/create', [EducationController::class, 'create'])->name('education.create');
+  Route::patch('/education/{id}/update', [EducationController::class, 'update'])->name('education.update');
+  Route::delete('/education/{id}', [EducationController::class, 'destroy'])->name('education.destroy');
 
 });
 

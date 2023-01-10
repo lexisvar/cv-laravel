@@ -10,4 +10,13 @@ class Education extends Model
     use HasFactory;
 
     protected $table = 'educations';
+
+    protected $fillable = [
+      'start_date',
+      'finish_date',
+      'study_name',
+      'study_title',
+      'college',
+      'description'
+    ];
 }
