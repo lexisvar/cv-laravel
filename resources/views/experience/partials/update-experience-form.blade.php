@@ -33,7 +33,7 @@
 
       <div>
         <x-input-label for="finish_date" :value="__('Finish Date')" />
-        <x-text-input id="finish_date" name="finish_date" type="date" class="mt-1 block w-full" :value="old('finish_date', $experience->finish_date)" required autocomplete="finish_date" />
+        <x-text-input id="finish_date" name="finish_date" type="date" class="mt-1 block w-full" :value="old('finish_date', $experience->finish_date)" autocomplete="finish_date" />
         <x-input-error class="mt-2" :messages="$errors->get('finish_date')" />
       </div>
 

@@ -32,10 +32,15 @@
 				<h2 class="title">About</h2>
 				<hr class="hr-title">
 				<div class="description">
-					<p>Hello! I am Anthony Barnett. Web Developer, Graphic Designer and Photographer.
-	        		Creative CV is a HTML resume template for professionals. Built with Bootstrap 4, 
-        			Now UI Kit and FontAwesome, this modern and responsive design template is perfect to showcase your portfolio, skills and experience. Learn More
-					</p>			
+					<p>
+            I am a highly skilled and experienced software developer with a passion for scripting languages like 
+            Python, Ruby and PHP, as well as Linux and Unix systems. I have a diverse range of experience in 
+            different industries and have worked on a variety of projects using a wide range of technologies. 
+            I have a deep understanding of backend development and have experience building robust and scalable APIs.
+             In addition to my technical skills, I have strong leadership and team management abilities and am able 
+             to deliver projects on time and under budget. I am a FIDE Master in chess and enjoy practicing the game 
+             and soccer. My passion for programming and chess sport makes me to continuously improve my problem-solving and strategic thinking abilities.
+          </p>	
 				</div> <!-- end description -->     
 			</section>    
 			<section id="experience">
@@ -50,7 +55,7 @@
 								<h3 class="title">{{$experience->occupation}}</h3>
 								<div class="meta">
 									<span class="field">{{$experience->company}}</span> 
-									<span class="date">{{ date('M Y', strtotime($experience->start_date)) }} - {{ date('M Y', strtotime($experience->finish_date))}}</span>
+									<span class="date">{{ date('M Y', strtotime($experience->start_date)) }} - {{ $experience->finish_date ? date('M Y', strtotime($experience->finish_date)) : 'CURRENT' }}</span>
 								</div>
 								<p class="description">{{$experience->description}} </p>
 							</section> <!-- end project description -->							

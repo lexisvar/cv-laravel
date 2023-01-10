@@ -75,8 +75,15 @@
         <div class="col-lg-6 col-md-12">
           <div class="card-body">
             <div class="h4 mt-0 title">About</div>
-            <p>Hello! I am Alexis Vargas. Web Developer and chess FIDE Master.</p>
-            <p>Creative CV is a HTML resume template for professionals. Built with Bootstrap 4, Now UI Kit and FontAwesome, this modern and responsive design template is perfect to showcase your portfolio, skills and experience. <a href="https://templateflip.com/templates/creative-cv/" target="_blank">Learn More</a></p>
+            <p>
+              I am a highly skilled and experienced software developer with a passion for scripting languages like 
+              Python, Ruby and PHP, as well as Linux and Unix systems. I have a diverse range of experience in 
+              different industries and have worked on a variety of projects using a wide range of technologies. 
+              I have a deep understanding of backend development and have experience building robust and scalable APIs.
+               In addition to my technical skills, I have strong leadership and team management abilities and am able 
+               to deliver projects on time and under budget. I am a FIDE Master in chess and enjoy practicing the game 
+               and soccer. My passion for programming and chess sport makes me to continuously improve my problem-solving and strategic thinking abilities.
+            </p>
           </div>
         </div>
         <div class="col-lg-6 col-md-12">
@@ -268,7 +275,7 @@
         <div class="row">
           <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
             <div class="card-body cc-experience-header">
-              <p>{{ date('M Y', strtotime($experience->start_date)) }} - {{ date('M Y', strtotime($experience->finish_date))}}</p>
+              <p>{{ date('M Y', strtotime($experience->start_date)) }} - {{ $experience->finish_date ? date('M Y', strtotime($experience->finish_date)) : 'CURRENT' }}</p>
               <div class="h5">{{$experience->company}}</div>
             </div>
           </div>
