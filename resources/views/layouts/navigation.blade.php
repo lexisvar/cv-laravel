@@ -17,17 +17,17 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                  <x-nav-link :href="route('skills')" :active="request()->routeIs('skills')">
+                  <x-nav-link :href="route('skills')" :active="request()->routeIs('skills') || request()->is('skills/*')">
                       {{ __('Skills') }}
                   </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                  <x-nav-link :href="route('experience')" :active="request()->routeIs('experience')">
+                  <x-nav-link :href="route('experience')" :active="request()->routeIs('experience') || request()->is('experience/*')">
                       {{ __('Experience') }}
                   </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                  <x-nav-link :href="route('education')" :active="request()->routeIs('education')">
+                  <x-nav-link :href="route('education')" :active="request()->routeIs('education') || request()->is('education/*')">
                       {{ __('Education') }}
                   </x-nav-link>
                 </div>
