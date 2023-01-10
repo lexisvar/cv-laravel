@@ -50,7 +50,7 @@
         <div class="content-center">
           <div class="cc-profile-image"><a href="#"><img src="images/alexisvargas.jpeg" alt="Image"/></a></div>
           <div class="h2 title">Alexis Vargas</div>
-          <p class="category text-white">Full Stack Developer, Chess player</p><a class="btn btn-primary smooth-scroll mr-2" href="#contact" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Hire Me</a><a class="btn btn-primary" href="#" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Download CV</a>
+          <p class="category text-white">Full Stack Developer, Chess player</p><a class="btn btn-primary smooth-scroll mr-2" href="#contact" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Hire Me</a><a class="btn btn-primary" href="/export" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Download CV</a>
         </div>
       </div>
       <div class="section">
