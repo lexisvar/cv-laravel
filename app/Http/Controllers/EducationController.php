@@ -13,7 +13,7 @@ class EducationController extends Controller
 {
   public function index()
   {
-    $data['educations'] = Education::all();
+    $data['educations'] = Education::orderBy('start_date','desc')->get();
   
     return view('education.index', $data);
   }

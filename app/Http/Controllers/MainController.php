@@ -13,25 +13,24 @@ class MainController extends Controller
   public function index()
   {
     $data['skills'] = Skill::all();
-    $data['experiences'] = Experience::all();
-    $data['educations'] = Education::all();  
+    $data['experiences'] = Experience::orderBy('start_date','desc')->get();
+    $data['educations'] = Education::orderBy('start_date','desc')->get();
   
     return view('home', $data);
   }
 
   public function createPDF(){
     $data['skills'] = Skill::all();
-    $data['experiences'] = Experience::all();
-    $data['educations'] = Education::all();
+    $data['experiences'] = Experience::orderBy('start_date','desc')->get();
+    $data['educations'] = Education::orderBy('start_date','desc')->get();
     $pdf = PDF::loadView('cv', $data);
     return $pdf->download('cv', $data);
   }
 
   public function simple(){
     $data['skills'] = Skill::all();
-    $data['experiences'] = Experience::all();
-    $data['educations'] = Education::all(); 
-    $data['skills'] = Skill::all();
+    $data['experiences'] = Experience::orderBy('start_date','desc')->get();
+    $data['educations'] = Education::orderBy('start_date','desc')->get();
     return view('cv', $data);
   }
 }
