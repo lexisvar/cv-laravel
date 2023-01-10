@@ -20,7 +20,12 @@
                   <x-nav-link :href="route('skills')" :active="request()->routeIs('skills')">
                       {{ __('Skills') }}
                   </x-nav-link>
-              </div>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                  <x-nav-link :href="route('experience')" :active="request()->routeIs('experience')">
+                      {{ __('Experience') }}
+                  </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
