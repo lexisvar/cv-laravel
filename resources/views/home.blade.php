@@ -268,7 +268,7 @@
         <div class="row">
           <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
             <div class="card-body cc-experience-header">
-              <p>{{$experience->start_date}} - {{$experience->finish_date}}</p>
+              <p>{{ date('M Y', strtotime($experience->start_date)) }} - {{ date('M Y', strtotime($experience->finish_date))}}</p>
               <div class="h5">{{$experience->company}}</div>
             </div>
           </div>

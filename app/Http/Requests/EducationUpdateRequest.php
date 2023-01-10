@@ -19,7 +19,7 @@ class EducationUpdateRequest extends FormRequest
           'study_name' => ['string', 'max:255'],
           'study_title' => ['string', 'max:255'],
           'college' => ['string', 'max:255'],
-          'description' => ['string', 'max:255']
+          'description' => ['string', 'max:500']
         ];
     }
 }

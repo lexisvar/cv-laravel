@@ -50,7 +50,7 @@
 								<h3 class="title">{{$experience->occupation}}</h3>
 								<div class="meta">
 									<span class="field">{{$experience->company}}</span> 
-									<span class="date">{{$experience->start_date}} - {{$experience->finish_date}}</span>
+									<span class="date">{{ date('M Y', strtotime($experience->start_date)) }} - {{ date('M Y', strtotime($experience->finish_date))}}</span>
 								</div>
 								<p class="description">{{$experience->description}} </p>
 							</section> <!-- end project description -->							

@@ -18,7 +18,7 @@ class ExperienceUpdateRequest extends FormRequest
           'finish_date' => ['string', 'max:255'],
           'occupation' => ['string', 'max:255'],
           'company' => ['string', 'max:255'],
-          'description' => ['string', 'max:255']
+          'description' => ['string', 'max:500']
         ];
     }
 }
