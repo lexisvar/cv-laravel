@@ -78,9 +78,9 @@
    a { 
       color: #00e; 
    }
-   a:visited { 
+   /* a:visited { 
       color: #551a8b; 
-   }
+   } */
    a:hover { 
       color: #06e; 
    }
@@ -405,4 +405,13 @@
 
    .description {
       margin: 20px 0;
+   }
+
+   header{
+      margin: 20px 0 30px 0 !important;
+   }
+
+   #name{
+      font-weight: bold !important;
+
    }

@@ -9,15 +9,22 @@
 </head>
 <body>
 	<div class="container">
-		<header>
-			<h1 id="name" class="w3-center">Alexis Vargas</h1>
-			<div id="designation" class="w3-center">		
-				<span class="title" ><i>Full Stack Developer (PHP, Ruby, VueJS)</i></span><br>
-				<span class="organization"><i>Shore Canada</i></span>		
+		<header class="w3-row">
+			<div class="w3-col s6">
+				<h1 id="name">Alexis Vargas</h1>
+				<div id="designation">		
+					<span class="title" ><i>Full Stack Developer (PHP, Ruby, VueJS)</i></span><br>
+				</div>
 			</div>
-
-			<div class="contact w3-center">
-				<div class="email">lexisvar@gmail.com</div>
+			<div class="w3-col s6 w3-right-align">
+				<div id="designation">		
+					<span class="github"><a href="https://github.com/lexisvar/">github</a></span><br>
+					<span class="linkedin"><a href="https://www.linkedin.com/in/lexisvar/">LinkedIn</a></span><br>
+					<span class="page"><a href="http://lexisvar.me/">lexisvar.me</a></span>
+				</div>
+				<div class="contact">
+					<div class="email">lexisvar@gmail.com</div>
+				</div>
 			</div>		
 		</header>	
 		<div class="content" role=main>	
@@ -75,15 +82,22 @@
     		<section id="skills">
 				<h2 class="title">Skills</h2>
 				<hr>
-				<div class="description">				
-        			@foreach ($skills as $skill)          
-        	  		<section class="skill">
-        	    		<div class="w3-light-grey w3-round-large">
-        	      			<div class="w3-grey w3-round-large w3-center" style="height:24px;width:<?= $skill->percent ?>%;"> {{$skill->percent}}% 
-							</div>
-        	    		</div><br>
-        			</section> 
+				<div class="description">
+					<ol>
+					@foreach ($skills as $skill)  
+					<li>
+						<section class="skill">
+							<h5 class="title">{{$skill->name}}</h3>
+							<div class="w3-light-grey w3-round-large w3-small">
+								<div class="w3-grey w3-round-large w3-center" style="width:<?= $skill->percent ?>%;"> {{$skill->percent}}% 
+								</div>
+							</div><br>
+						</section>
+					</li>        
+ 
         			@endforeach
+
+					</ol>				
       			</div>
 			</section>
 	
