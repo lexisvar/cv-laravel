@@ -55,7 +55,14 @@
       </div>
       <div class="section">
         <div class="container">
-          <div class="button-container"><a class="btn btn-default btn-round btn-lg btn-icon" href="#" rel="tooltip" title="Follow me on Facebook"><i class="fa fa-facebook"></i></a><a class="btn btn-default btn-round btn-lg btn-icon" href="#" rel="tooltip" title="Follow me on Twitter"><i class="fa fa-twitter"></i></a><a class="btn btn-default btn-round btn-lg btn-icon" href="#" rel="tooltip" title="Follow me on Google+"><i class="fa fa-google-plus"></i></a><a class="btn btn-default btn-round btn-lg btn-icon" href="#" rel="tooltip" title="Follow me on Instagram"><i class="fa fa-instagram"></i></a></div>
+          <div class="button-container">
+            <a class="btn btn-default btn-round btn-lg btn-icon" href="https://github.com/lexisvar" rel="tooltip" title="Follow me on Github">
+              <i class="fa fa-github"></i>
+            </a>
+            <a class="btn btn-default btn-round btn-lg btn-icon" href="https://www.linkedin.com/in/lexisvar" rel="tooltip" title="Follow me on Linkedin">
+              <i class="fa fa-linkedin-square"></i>
+            </a>            
+          </div>
         </div>
       </div>
     </div>
@@ -420,10 +427,17 @@
 </div></div>
     </div>
     <footer class="footer">
-      <div class="container text-center"><a class="cc-facebook btn btn-link" href="#"><i class="fa fa-facebook fa-2x " aria-hidden="true"></i></a><a class="cc-twitter btn btn-link " href="#"><i class="fa fa-twitter fa-2x " aria-hidden="true"></i></a><a class="cc-google-plus btn btn-link" href="#"><i class="fa fa-google-plus fa-2x" aria-hidden="true"></i></a><a class="cc-instagram btn btn-link" href="#"><i class="fa fa-instagram fa-2x " aria-hidden="true"></i></a></div>
+      <div class="container text-center">
+        <a class="cc-github btn btn-link" href="https://github.com/lexisvar">
+          <i class="fa fa-github fa-2x " aria-hidden="true"></i>
+        </a>
+        <a class="cc-linkedin btn btn-link " href="https://www.linkedin.com/in/lexisvar/">
+          <i class="fa fa-linkedin fa-2x " aria-hidden="true"></i>
+        </a>
+      </div>
       <div class="h4 title text-center">Alexis Vargas</div>
       <div class="text-center text-muted">
-        <p>&copy; Developer. All rights reserved.</p>
+        <p>&copy; All rights reserved.</p>
       </div>
     </footer>
     <script src="js/core/jquery.3.2.1.min.js?ver=1.1.0"></script>
