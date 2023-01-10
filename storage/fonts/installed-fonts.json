@@ -1,5 +1,13 @@
 {
     "fontawesome": {
         "normal": "fontawesome_normal_79b165604c2795cff5e31845780a7600"
+    },
+    "merriweather": {
+        "300": "\/home\/ares\/development\/projects\/php\/cv-laravel\/storage\/fonts\/merriweather_300_032cb4e0d2211f407f5dd83e1c2c594c",
+        "normal": "\/home\/ares\/development\/projects\/php\/cv-laravel\/storage\/fonts\/merriweather_normal_eccc86605a40e8d29ea1122aa186742b",
+        "bold": "merriweather_bold_af86fdde837e2636b3978e282e839f29"
+    },
+    "source sans pro": {
+        "italic": "source_sans_pro_italic_27672a92dcedb2218abd2dadee4fe950"
     }
 }
