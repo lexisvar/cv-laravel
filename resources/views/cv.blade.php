@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
 	<meta charset="UTF-8">
-	<title>CV Alexis Vargas</title>
+	<title>CV María Paula Hernández</title>
 	
 	<link rel="stylesheet" href="css/cv.css" />
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -11,7 +11,7 @@
 	<div class="container">
 		<header class="w3-row">
 			<div class="w3-col s6">
-				<h1 id="name">Alexis Vargas</h1>
+				<h1 id="name">María Paula Hernández</h1>
 				<div id="designation">		
 					<span class="title" ><i>Full Stack Developer (PHP, Ruby, VueJS)</i></span><br>
 				</div>
