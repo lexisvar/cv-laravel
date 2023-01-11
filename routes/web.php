@@ -6,6 +6,7 @@ use App\Http\Controllers\SkillsController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\EducationController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Audit;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,7 @@ Route::get('/simple', [MainController::class, 'simple']);
 Route::get('/export', [MainController::class, 'createPDF']);
 
 Route::get('/dashboard', function () {
-  return view('dashboard');
+  return view('dashboard',['visits' => Audit::orderBy('created_at','desc')->get()]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
