@@ -34,6 +34,11 @@
                         <th scope="col"
                           class="text-gray-dark border-gray border-b-2 border-t-2 border-gray-200 py-3 px-3 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                           <!---->
+                          User Agent
+                        </th>
+                        <th scope="col"
+                          class="text-gray-dark border-gray border-b-2 border-t-2 border-gray-200 py-3 px-3 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                          <!---->
                           Date
                         </th>
                         
@@ -55,6 +60,9 @@
                           </td>
                           <td class="py-4 px-6 border-b border-gray-200 text-gray-900 text-sm ">
                             <span>{{$visit->function}}</span>
+                          </td>
+                          <td class="py-4 px-6 border-b border-gray-200 text-gray-900 text-sm ">
+                            <span>{{$visit->uagent}}</span>
                           </td>
                           <td class="py-4 px-6 border-b border-gray-200 text-gray-900 text-sm ">
                             <span>{{$visit->created_at}}</span>

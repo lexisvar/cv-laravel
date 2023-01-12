@@ -14,6 +14,7 @@ class Audit extends Model
     protected $fillable = [
       'ip',
       'controller',
-      'function'
+      'function',
+      'uagent'
     ];
 }

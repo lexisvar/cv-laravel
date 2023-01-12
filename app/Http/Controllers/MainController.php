@@ -17,6 +17,7 @@ class MainController extends Controller
         'ip' => request()->getClientIp(),
         'controller' => 'Main',
         'function' => 'index',
+        'uagent' => request()->header('User-Agent')
       ],
     );
 
@@ -33,6 +34,7 @@ class MainController extends Controller
         'ip' => request()->getClientIp(),
         'controller' => 'Main',
         'function' => 'createPDF',
+        'uagent' => request()->header('User-Agent')
       ],
     );
     $data['skills'] = Skill::all();
@@ -48,6 +50,7 @@ class MainController extends Controller
         'ip' => request()->getClientIp(),
         'controller' => 'Main',
         'function' => 'simple',
+        'uagent' => request()->header('User-Agent')
       ],
     );
     $data['skills'] = Skill::all();
