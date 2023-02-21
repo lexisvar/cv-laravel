@@ -33,13 +33,7 @@
 				<hr class="hr-title">
 				<div class="description">
 					<p>
-            I am a highly skilled and experienced software developer with a passion for scripting languages like 
-            Python, Ruby and PHP, as well as Linux and Unix systems. I have a diverse range of experience in 
-            different industries and have worked on a variety of projects using a wide range of technologies. 
-            I have a deep understanding of backend development and have experience building robust and scalable APIs.
-             In addition to my technical skills, I have strong leadership and team management abilities and am able 
-             to deliver projects on time and under budget. I am a FIDE Master in chess and enjoy practicing the game 
-             and soccer. My passion for programming and chess sport makes me to continuously improve my problem-solving and strategic thinking abilities.
+					As a junior developer with approximately 6 months of experience, I have worked with a range of front-end and back-end technologies, including HTML, JavaScript, Bootstrap, Vue.js, PHP, Laravel, Node.js, and MySQL. Drawing on my experience as an International Chess Master, I bring exceptional problem-solving skills and a talent for developing sound strategies to address challenges in programming. Furthermore, as a current mechanical engineering student, I have a solid foundation in mathematics and physics, which I apply to my work in programming. I am a collaborative team player who values feedback and fosters open communication to ensure a cohesive, effective, and efficient work environment.
           </p>	
 				</div> <!-- end description -->     
 			</section>    
