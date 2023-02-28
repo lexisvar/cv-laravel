@@ -19,8 +19,8 @@
 			<div class="w3-col s6 w3-right-align">
 				<div id="designation">		
 					<span class="github"><a href="https://github.com/nessamoreno">github</a></span><br>
-					<!-- <span class="linkedin"><a href="https://www.linkedin.com/in/lexisvar/">LinkedIn</a></span><br> -->
-					<!-- <span class="page"><a href="http://lexisvar.me/">lexisvar.me</a></span> -->
+					<span class="linkedin"><a href="https://www.linkedin.com/in/vanessamorenoarteaga/">LinkedIn</a></span><br>
+					<span class="page"><a href="https://mvanessa.me/">mvanessa.me</a></span>
 				</div>
 				<div class="contact">
 					<div class="email">vanessamorenoarteaga@gmail.com</div>
