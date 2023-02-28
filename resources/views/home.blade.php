@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Lexisvar CV</title>
+    <title>Vanessa CV</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href="css/aos.css?ver=1.1.0" rel="stylesheet">
@@ -48,19 +48,19 @@
       <div class="page-header-image" data-parallax="true" style="background-image: url('images/bgroundd.jpg')"></div>
       <div class="container">
         <div class="content-center">
-          <div class="cc-profile-image"><a href="#"><img src="images/alexisvargas.jpeg" alt="Image"/></a></div>
-          <div class="h2 title">Alexis Vargas</div>
-          <p class="category text-white">Full Stack Developer, Chess player</p><a class="btn btn-primary smooth-scroll mr-2" href="#contact" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Hire Me</a><a class="btn btn-primary" href="/export" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Download CV</a>
+          <div class="cc-profile-image"><a href="#"><img src="images/vanessa.jpg" alt="Image"/></a></div>
+          <div class="h2 title">Vanessa Moreno</div>
+          <p class="category text-white">Full Stack Developer, Engineering in systems</p><a class="btn btn-primary smooth-scroll mr-2" href="#contact" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Hire Me</a><a class="btn btn-primary" href="/export" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Download CV</a>
         </div>
       </div>
       <div class="section">
         <div class="container">
           <div class="button-container">
-            <a class="btn btn-default btn-round btn-lg btn-icon" href="https://github.com/lexisvar" rel="tooltip" title="Follow me on Github">
+            <a class="btn btn-default btn-round btn-lg btn-icon" href="https://github.com/nessamoreno" rel="tooltip" title="Follow me on Github">
               <i class="fa fa-github"></i>
             </a>
-            <a class="btn btn-default btn-round btn-lg btn-icon" href="https://www.linkedin.com/in/lexisvar" rel="tooltip" title="Follow me on Linkedin">
-              <i class="fa fa-linkedin-square"></i>
+            <!-- <a class="btn btn-default btn-round btn-lg btn-icon" href="https://www.linkedin.com/in/lexisvar" rel="tooltip" title="Follow me on Linkedin">
+              <i class="fa fa-linkedin-square"></i> -->
             </a>            
           </div>
         </div>
@@ -95,11 +95,11 @@
             </div>
             <div class="row mt-3">
               <div class="col-sm-4"><strong class="text-uppercase">Email:</strong></div>
-              <div class="col-sm-8">lexisvar@gmail.com</div>
+              <div class="col-sm-8">vanessamoreno.personal@gmail.com</div>
             </div>
             <div class="row mt-3">
               <div class="col-sm-4"><strong class="text-uppercase">Phone:</strong></div>
-              <div class="col-sm-8">+57 301-284-4988</div>
+              <div class="col-sm-8">+57 314-801-6001</div>
             </div>
             <div class="row mt-3">
               <div class="col-sm-4"><strong class="text-uppercase">Address:</strong></div>
@@ -107,7 +107,7 @@
             </div>
             <div class="row mt-3">
               <div class="col-sm-4"><strong class="text-uppercase">Language:</strong></div>
-              <div class="col-sm-8">Spanish, English</div>
+              <div class="col-sm-8">Spanish</div>
             </div>
           </div>
         </div>
@@ -419,9 +419,9 @@
                     <p class="mb-0"><strong>Address </strong></p>
                     <p class="pb-2">Cra 25 11-31, Bucaramanga, Colombia</p>
                     <p class="mb-0"><strong>Phone</strong></p>
-                    <p class="pb-2">+57 301-284-4988</p>
+                    <p class="pb-2">+57 314-801-6001</p>
                     <p class="mb-0"><strong>Email</strong></p>
-                    <p>lexisvar@gmail.com</p>
+                    <p>vanessamoreno.personal@gmail.com</p>
                   </div>
                 </div>
               </div>
@@ -435,14 +435,14 @@
     </div>
     <footer class="footer">
       <div class="container text-center">
-        <a class="cc-github btn btn-link" href="https://github.com/lexisvar">
+        <a class="cc-github btn btn-link" href="https://github.com/nessamoreno">
           <i class="fa fa-github fa-2x " aria-hidden="true"></i>
         </a>
-        <a class="cc-linkedin btn btn-link " href="https://www.linkedin.com/in/lexisvar/">
-          <i class="fa fa-linkedin fa-2x " aria-hidden="true"></i>
+        <!-- <a class="cc-linkedin btn btn-link " href="https://www.linkedin.com/in/lexisvar/">
+          <i class="fa fa-linkedin fa-2x " aria-hidden="true"></i> -->
         </a>
       </div>
-      <div class="h4 title text-center">Alexis Vargas</div>
+      <div class="h4 title text-center">Vanessa Moreno</div>
       <div class="text-center text-muted">
         <p>&copy; All rights reserved.</p>
       </div>
@@ -466,7 +466,7 @@
       }
 
       span = document.getElementById("age");
-      span.innerHTML = getAge("1989/09/06");
+      span.innerHTML = getAge("2001/09/26");
     </script>
   </body>
 </html>

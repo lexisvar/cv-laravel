@@ -76,13 +76,13 @@
       ========================================================================== */
    
    a { 
-      color: #00e; 
+      color: #5f1b89 ; 
    }
    /* a:visited { 
       color: #551a8b; 
    } */
    a:hover { 
-      color: #06e; 
+      color: #9d15bf; 
    }
    a:focus { 
       outline: thin dotted; 

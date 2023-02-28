@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
 	<meta charset="UTF-8">
-	<title>CV Alexis Vargas</title>
+	<title>Vanessa Moreno CV</title>
 	
 	<link rel="stylesheet" href="css/cv.css" />
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -11,19 +11,19 @@
 	<div class="container">
 		<header class="w3-row">
 			<div class="w3-col s6">
-				<h1 id="name">Alexis Vargas</h1>
+				<h1 id="name">Vanessa Moreno</h1>
 				<div id="designation">		
-					<span class="title" ><i>Full Stack Developer (PHP, Ruby, VueJS)</i></span><br>
+					<span class="title" ><i>Full Stack Developer (PHP,JavaScript)</i></span><br>
 				</div>
 			</div>
 			<div class="w3-col s6 w3-right-align">
 				<div id="designation">		
-					<span class="github"><a href="https://github.com/lexisvar/">github</a></span><br>
-					<span class="linkedin"><a href="https://www.linkedin.com/in/lexisvar/">LinkedIn</a></span><br>
-					<span class="page"><a href="http://lexisvar.me/">lexisvar.me</a></span>
+					<span class="github"><a href="https://github.com/nessamoreno">github</a></span><br>
+					<!-- <span class="linkedin"><a href="https://www.linkedin.com/in/lexisvar/">LinkedIn</a></span><br> -->
+					<!-- <span class="page"><a href="http://lexisvar.me/">lexisvar.me</a></span> -->
 				</div>
 				<div class="contact">
-					<div class="email">lexisvar@gmail.com</div>
+					<div class="email">vanessamoreno.personal@gmail.com</div>
 				</div>
 			</div>		
 		</header>	
@@ -33,14 +33,14 @@
 				<hr class="hr-title">
 				<div class="description">
 					<p>
-            I am a highly skilled and experienced software developer with a passion for scripting languages like 
-            Python, Ruby and PHP, as well as Linux and Unix systems. I have a diverse range of experience in 
-            different industries and have worked on a variety of projects using a wide range of technologies. 
-            I have a deep understanding of backend development and have experience building robust and scalable APIs.
-             In addition to my technical skills, I have strong leadership and team management abilities and am able 
-             to deliver projects on time and under budget. I am a FIDE Master in chess and enjoy practicing the game 
-             and soccer. My passion for programming and chess sport makes me to continuously improve my problem-solving and strategic thinking abilities.
-          </p>	
+						I am a highly skilled and experienced software developer with a passion for scripting languages like 
+						Python, Ruby and PHP, as well as Linux and Unix systems. I have a diverse range of experience in 
+						different industries and have worked on a variety of projects using a wide range of technologies. 
+						I have a deep understanding of backend development and have experience building robust and scalable APIs.
+						In addition to my technical skills, I have strong leadership and team management abilities and am able 
+						to deliver projects on time and under budget. I am a FIDE Master in chess and enjoy practicing the game 
+						and soccer. My passion for programming and chess sport makes me to continuously improve my problem-solving and strategic thinking abilities.
+					</p>	
 				</div> <!-- end description -->     
 			</section>    
 			<section id="experience">

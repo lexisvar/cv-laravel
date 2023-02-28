@@ -204,14 +204,14 @@ sup {
 }
 
 a {
-    color: #007bff;
+    color: #5f1b89;
     text-decoration: none;
     background-color: transparent;
     -webkit-text-decoration-skip: objects
 }
 
 a:hover {
-    color: #0056b3;
+    color: #9d15bf;
     text-decoration: underline
 }
 
@@ -1938,7 +1938,7 @@ select.form-control-lg:not([size]):not([multiple]) {
 .btn.focus,
 .btn:focus {
     outline: 0;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, .25)
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25)
 }
 
 .btn.disabled,
