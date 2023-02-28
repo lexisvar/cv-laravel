@@ -33,13 +33,10 @@
 				<hr class="hr-title">
 				<div class="description">
 					<p>
-						I am a highly skilled and experienced software developer with a passion for scripting languages like 
-						Python, Ruby and PHP, as well as Linux and Unix systems. I have a diverse range of experience in 
-						different industries and have worked on a variety of projects using a wide range of technologies. 
-						I have a deep understanding of backend development and have experience building robust and scalable APIs.
-						In addition to my technical skills, I have strong leadership and team management abilities and am able 
-						to deliver projects on time and under budget. I am a FIDE Master in chess and enjoy practicing the game 
-						and soccer. My passion for programming and chess sport makes me to continuously improve my problem-solving and strategic thinking abilities.
+						My name is Vanessa Moreno, I am a systems engineer and software developer.
+						I have worked in the Back-end and Front-end areas, implementing various programming languages (PHP, Python, Javascript) and work 
+						environments (Laravel, Bootstrap and NodeJS) specializing in Laravel. I have notions with API rest and I have excellent management 
+						and communication skills.
 					</p>	
 				</div> <!-- end description -->     
 			</section>    

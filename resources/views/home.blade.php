@@ -59,8 +59,8 @@
             <a class="btn btn-default btn-round btn-lg btn-icon" href="https://github.com/nessamoreno" rel="tooltip" title="Follow me on Github">
               <i class="fa fa-github"></i>
             </a>
-            <!-- <a class="btn btn-default btn-round btn-lg btn-icon" href="https://www.linkedin.com/in/lexisvar" rel="tooltip" title="Follow me on Linkedin">
-              <i class="fa fa-linkedin-square"></i> -->
+            <a class="btn btn-default btn-round btn-lg btn-icon" href="https://www.linkedin.com/in/vanessamorenoarteaga/" rel="tooltip" title="Follow me on Linkedin">
+              <i class="fa fa-linkedin-square"></i>
             </a>            
           </div>
         </div>
@@ -76,13 +76,9 @@
           <div class="card-body">
             <div class="h4 mt-0 title">About</div>
             <p>
-              I am a highly skilled and experienced software developer with a passion for scripting languages like 
-              Python, Ruby and PHP, as well as Linux and Unix systems. I have a diverse range of experience in 
-              different industries and have worked on a variety of projects using a wide range of technologies. 
-              I have a deep understanding of backend development and have experience building robust and scalable APIs.
-               In addition to my technical skills, I have strong leadership and team management abilities and am able 
-               to deliver projects on time and under budget. I am a FIDE Master in chess and enjoy practicing the game 
-               and soccer. My passion for programming and chess sport makes me to continuously improve my problem-solving and strategic thinking abilities.
+              My name is Vanessa Moreno, I am a systems engineer and software developer.
+              I have worked in the Back-end and Front-end areas, implementing various programming languages (PHP, Python, Javascript) and work environments
+              (Laravel, Bootstrap and NodeJS) specializing in Laravel. I have notions with API rest and I have excellent management and communication skills.
             </p>
           </div>
         </div>
@@ -438,8 +434,8 @@
         <a class="cc-github btn btn-link" href="https://github.com/nessamoreno">
           <i class="fa fa-github fa-2x " aria-hidden="true"></i>
         </a>
-        <!-- <a class="cc-linkedin btn btn-link " href="https://www.linkedin.com/in/lexisvar/">
-          <i class="fa fa-linkedin fa-2x " aria-hidden="true"></i> -->
+        <a class="cc-linkedin btn btn-link " href="https://www.linkedin.com/in/vanessamorenoarteaga/">
+          <i class="fa fa-linkedin fa-2x " aria-hidden="true"></i>
         </a>
       </div>
       <div class="h4 title text-center">Vanessa Moreno</div>
