@@ -23,7 +23,7 @@
 					<!-- <span class="page"><a href="http://lexisvar.me/">lexisvar.me</a></span> -->
 				</div>
 				<div class="contact">
-					<div class="email">vanessamoreno.personal@gmail.com</div>
+					<div class="email">vanessamorenoarteaga@gmail.com</div>
 				</div>
 			</div>		
 		</header>	

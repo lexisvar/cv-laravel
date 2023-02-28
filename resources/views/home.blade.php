@@ -95,7 +95,7 @@
             </div>
             <div class="row mt-3">
               <div class="col-sm-4"><strong class="text-uppercase">Email:</strong></div>
-              <div class="col-sm-8">vanessamoreno.personal@gmail.com</div>
+              <div class="col-sm-8">vanessamorenoarteaga@gmail.com</div>
             </div>
             <div class="row mt-3">
               <div class="col-sm-4"><strong class="text-uppercase">Phone:</strong></div>
@@ -421,7 +421,7 @@
                     <p class="mb-0"><strong>Phone</strong></p>
                     <p class="pb-2">+57 314-801-6001</p>
                     <p class="mb-0"><strong>Email</strong></p>
-                    <p>vanessamoreno.personal@gmail.com</p>
+                    <p>vanessamorenoarteaga@gmail.com</p>
                   </div>
                 </div>
               </div>
