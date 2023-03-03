@@ -120,7 +120,7 @@
           <div class="col-md-6">
             <div class="progress-container progress-primary"><span class="progress-badge">{{$skill->name}}</span>
               <div class="progress">
-                <div class="progress-bar progress-bar-primary" data-aos="progress-full" data-aos-offset="10" data-aos-duration="2000" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $skill['percent']; ?>%;"></div><span class="progress-value">{{$skill->percent}}%</span>
+                <div class="progress-bar progress-bar-primary" data-aos="progress-full" data-aos-offset="10" data-aos-duration="2000" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:<?= $skill->percent;?>%;"></div><span class="progress-value">{{$skill->percent}}%</span>
                 </div>
               </div>
           </div>
