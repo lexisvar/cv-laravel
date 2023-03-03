@@ -13,17 +13,17 @@
 			<div class="w3-col s6">
 				<h1 id="name">María Paula Hernández</h1>
 				<div id="designation">		
-					<span class="title" ><i>Full Stack Developer (PHP, Ruby, VueJS)</i></span><br>
+					<span class="title" ><i>Chess player, Engineering student, Programming lover</i></span><br>
 				</div>
 			</div>
 			<div class="w3-col s6 w3-right-align">
 				<div id="designation">		
 					<span class="github"><a href="https://github.com/lexisvar/">github</a></span><br>
 					<span class="linkedin"><a href="https://www.linkedin.com/in/lexisvar/">LinkedIn</a></span><br>
-					<span class="page"><a href="http://lexisvar.me/">lexisvar.me</a></span>
+					<span class="page"><a href="http://mpauher.me/">mpauher.me</a></span>
 				</div>
 				<div class="contact">
-					<div class="email">lexisvar@gmail.com</div>
+					<div class="email">mpaulah24@gmail.com</div>
 				</div>
 			</div>		
 		</header>	
