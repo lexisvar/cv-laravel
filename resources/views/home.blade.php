@@ -89,21 +89,21 @@
         <div class="col-lg-6 col-md-12">
           <div class="card-body">
             <div class="h4 mt-0 title">Basic Information</div>
-            <div class="row">
+            <!-- <div class="row">
               <div class="col-sm-4"><strong class="text-uppercase">Age:</strong></div>
               <div class="col-sm-8"><span id="age"></span></div>
-            </div>
+            </div> -->
             <div class="row mt-3">
               <div class="col-sm-4"><strong class="text-uppercase">Email:</strong></div>
               <div class="col-sm-8">lexisvar@gmail.com</div>
             </div>
             <div class="row mt-3">
               <div class="col-sm-4"><strong class="text-uppercase">Phone:</strong></div>
-              <div class="col-sm-8">+57 301-284-4988</div>
+              <div class="col-sm-8">+61 450-514-844</div>
             </div>
             <div class="row mt-3">
               <div class="col-sm-4"><strong class="text-uppercase">Address:</strong></div>
-              <div class="col-sm-8">Cra 25 11-31, Bucaramanga, Colombia</div>
+              <div class="col-sm-8">Sydney, Australia</div>
             </div>
             <div class="row mt-3">
               <div class="col-sm-4"><strong class="text-uppercase">Language:</strong></div>
@@ -417,9 +417,9 @@
                 <div class="col-md-6">
                   <div class="card-body">
                     <p class="mb-0"><strong>Address </strong></p>
-                    <p class="pb-2">Cra 25 11-31, Bucaramanga, Colombia</p>
+                    <p class="pb-2">Sydney, Australia</p>
                     <p class="mb-0"><strong>Phone</strong></p>
-                    <p class="pb-2">+57 301-284-4988</p>
+                    <p class="pb-2">+61 450-514-844</p>
                     <p class="mb-0"><strong>Email</strong></p>
                     <p>lexisvar@gmail.com</p>
                   </div>
