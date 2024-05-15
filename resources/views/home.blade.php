@@ -453,7 +453,7 @@
     <script src="js/now-ui-kit.js?ver=1.1.0"></script>
     <script src="js/aos.js?ver=1.1.0"></script>
     <script src="scripts/main.js?ver=1.1.0"></script>
-    <script>
+    <!-- <script>
       function getAge(dateString) {
       var today = new Date();
       var birthDate = new Date(dateString);
@@ -467,6 +467,6 @@
 
       span = document.getElementById("age");
       span.innerHTML = getAge("1989/09/06");
-    </script>
+    </script> -->
   </body>
 </html>
