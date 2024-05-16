@@ -42,6 +42,7 @@ class MainController extends Controller
     $data['skills'] = Skill::all();
     $data['experiences'] = Experience::orderBy('start_date','desc')->get();
     $data['educations'] = Education::orderBy('start_date','desc')->get();
+    $data['generals'] = General::all()->pluck('value', 'key')->all();
     $pdf = PDF::loadView('cv', $data);
     return $pdf->download('cv', $data);
   }
@@ -58,6 +59,7 @@ class MainController extends Controller
     $data['skills'] = Skill::all();
     $data['experiences'] = Experience::orderBy('start_date','desc')->get();
     $data['educations'] = Education::orderBy('start_date','desc')->get();
+    $data['generals'] = General::all()->pluck('value', 'key')->all();
     return view('cv', $data);
   }
 }
