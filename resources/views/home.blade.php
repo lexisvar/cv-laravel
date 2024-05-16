@@ -49,8 +49,9 @@
       <div class="container">
         <div class="content-center">
           <div class="cc-profile-image"><a href="#"><img src="images/alexisvargas.jpeg" alt="Image"/></a></div>
-          <div class="h2 title">Alexis Vargas</div>
-          <p class="category text-white">Full Stack Developer, Chess player</p><a class="btn btn-primary smooth-scroll mr-2" href="#contact" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Hire Me</a><a class="btn btn-primary" href="/export" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Download CV</a>
+          <div class="h2 title">{{ $generals['name'] }}</div>
+          <p class="category text-white">{{ $generals['occupation'] }}</p>
+          <a class="btn btn-primary smooth-scroll mr-2" href="#contact" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Hire Me</a><a class="btn btn-primary" href="/export" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Download CV</a>
         </div>
       </div>
       <div class="section">
@@ -61,7 +62,7 @@
             </a>
             <a class="btn btn-default btn-round btn-lg btn-icon" href="https://www.linkedin.com/in/lexisvar" rel="tooltip" title="Follow me on Linkedin">
               <i class="fa fa-linkedin-square"></i>
-            </a>            
+            </a>
           </div>
         </div>
       </div>
@@ -76,13 +77,7 @@
           <div class="card-body">
             <div class="h4 mt-0 title">About</div>
             <p>
-              I am a highly skilled and experienced software developer with a passion for scripting languages like 
-              Python, Ruby and PHP, as well as Linux and Unix systems. I have a diverse range of experience in 
-              different industries and have worked on a variety of projects using a wide range of technologies. 
-              I have a deep understanding of backend development and have experience building robust and scalable APIs.
-               In addition to my technical skills, I have strong leadership and team management abilities and am able 
-               to deliver projects on time and under budget. I am a FIDE Master in chess and enjoy practicing the game 
-               and soccer. My passion for programming and chess sport makes me to continuously improve my problem-solving and strategic thinking abilities.
+            {{ $generals['biography'] }}
             </p>
           </div>
         </div>
@@ -95,19 +90,19 @@
             </div> -->
             <div class="row mt-3">
               <div class="col-sm-4"><strong class="text-uppercase">Email:</strong></div>
-              <div class="col-sm-8">lexisvar@gmail.com</div>
+              <div class="col-sm-8">{{ $generals['email'] }}</div>
             </div>
             <div class="row mt-3">
               <div class="col-sm-4"><strong class="text-uppercase">Phone:</strong></div>
-              <div class="col-sm-8">+61 450-514-844</div>
+              <div class="col-sm-8">{{ $generals['phone'] }}</div>
             </div>
             <div class="row mt-3">
               <div class="col-sm-4"><strong class="text-uppercase">Address:</strong></div>
-              <div class="col-sm-8">Sydney, Australia</div>
+              <div class="col-sm-8">{{ $generals['address'] }}</div>
             </div>
             <div class="row mt-3">
               <div class="col-sm-4"><strong class="text-uppercase">Language:</strong></div>
-              <div class="col-sm-8">Spanish, English</div>
+              <div class="col-sm-8">{{ $generals['language'] }}</div>
             </div>
           </div>
         </div>
@@ -118,7 +113,7 @@
 <div class="section" id="skill">
   <div class="container">
     <div class="h4 text-center mb-4 title">Professional Skills</div>
-    
+
     <div class="card" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
       <div class="card-body">
         <div class="row">
@@ -130,7 +125,7 @@
                 </div>
               </div>
           </div>
-        @endforeach   
+        @endforeach
       </div>
     </div>
   </div>
@@ -271,7 +266,7 @@
   <div class="container cc-experience">
     <div class="h4 text-center mb-4 title">Work Experience</div>
     @foreach ($experiences as $experience)
-      <div class="card">      
+      <div class="card">
         <div class="row">
           <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
             <div class="card-body cc-experience-header">
@@ -417,11 +412,11 @@
                 <div class="col-md-6">
                   <div class="card-body">
                     <p class="mb-0"><strong>Address </strong></p>
-                    <p class="pb-2">Sydney, Australia</p>
+                    <p class="pb-2">{{ $generals['address'] }}</p>
                     <p class="mb-0"><strong>Phone</strong></p>
-                    <p class="pb-2">+61 450-514-844</p>
+                    <p class="pb-2">{{ $generals['phone'] }}</p>
                     <p class="mb-0"><strong>Email</strong></p>
-                    <p>lexisvar@gmail.com</p>
+                    <p>{{ $generals['email'] }}</p>
                   </div>
                 </div>
               </div>
@@ -442,7 +437,7 @@
           <i class="fa fa-linkedin fa-2x " aria-hidden="true"></i>
         </a>
       </div>
-      <div class="h4 title text-center">Alexis Vargas</div>
+      <div class="h4 title text-center">{{ $generals['name'] }}</div>
       <div class="text-center text-muted">
         <p>&copy; All rights reserved.</p>
       </div>

@@ -6,6 +6,7 @@ use App\Models\Audit;
 use App\Models\Skill;
 use App\Models\Experience;
 use App\Models\Education;
+use App\Models\General;
 use PDF;
 
 class MainController extends Controller
@@ -24,7 +25,8 @@ class MainController extends Controller
     $data['skills'] = Skill::all();
     $data['experiences'] = Experience::orderBy('start_date','desc')->get();
     $data['educations'] = Education::orderBy('start_date','desc')->get();
-  
+    $data['generals'] = General::all()->pluck('value', 'key')->all();
+
     return view('home', $data);
   }
 
