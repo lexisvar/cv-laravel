@@ -74,7 +74,8 @@
                             <section class="project">
                                 <h3 class="title">{{$education->study_name}}</h3>
                                 <div class="meta">
-                                    <span>{{$education->college}}</span> <span class="date">{{$education->start_date}} - {{$education->finish_date}}</span>
+                                    <span>{{$education->college}}</span>
+                                    <span class="date">{{ date('M Y', strtotime($education->start_date)) }} - {{ $education->finish_date ? date('M Y', strtotime($education->finish_date)) : 'CURRENT' }}</span>
                                 </div>
                                 <p class="description">{{$education->description}} </p>
                             </section> <!-- end project description -->

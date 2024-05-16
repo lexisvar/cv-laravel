@@ -7,7 +7,7 @@
       <p class="mt-1 text-sm text-gray-600">
           {{ __("Update your education information.") }}
       </p>
-  </header>          
+  </header>
 
   <form method="post" action="{{ route('education.create') }}" class="mt-6 space-y-6">
       @csrf
@@ -33,13 +33,13 @@
 
     <div>
       <x-input-label for="start_date" :value="__('Start Date')" />
-      <x-text-input id="start_date" name="start_date" type="text" class="mt-1 block w-full" required autocomplete="start_date" />
+      <x-text-input id="start_date" name="start_date" type="date" class="mt-1 block w-full" required autocomplete="start_date" />
       <x-input-error class="mt-2" :messages="$errors->get('start_date')" />
     </div>
 
     <div>
       <x-input-label for="finish_date" :value="__('Finish Date')" />
-      <x-text-input id="finish_date" name="finish_date" type="text" class="mt-1 block w-full" required autocomplete="finish_date" />
+      <x-text-input id="finish_date" name="finish_date" type="date" class="mt-1 block w-full" required autocomplete="finish_date" />
       <x-input-error class="mt-2" :messages="$errors->get('finish_date')" />
     </div>
 

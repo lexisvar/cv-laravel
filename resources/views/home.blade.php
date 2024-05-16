@@ -294,7 +294,7 @@
       <div class="row">
         <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
           <div class="card-body cc-education-header">
-            <p>{{$education->start_date}} - {{$education->finish_date}}</p>
+            <p>{{ date('M Y', strtotime($education->start_date)) }} - {{ $education->finish_date ? date('M Y', strtotime($education->finish_date)) : 'CURRENT' }}</p>
             <div class="h5">{{$education->study_title}}</div>
           </div>
         </div>
