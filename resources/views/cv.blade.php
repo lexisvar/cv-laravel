@@ -72,7 +72,7 @@
                         <!-- Project 1 -->
                         <li>
                             <section class="project">
-                                <h3 class="title">{{$education->study_name}}</h3>
+                                <h3 class="title">{{$education->study_name}} ({{$education->study_title}})</h3>
                                 <div class="meta">
                                     <span>{{$education->college}}</span>
                                     <span class="date">{{ date('M Y', strtotime($education->start_date)) }} - {{ $education->finish_date ? date('M Y', strtotime($education->finish_date)) : 'CURRENT' }}</span>
