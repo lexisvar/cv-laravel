@@ -7,6 +7,30 @@
 
   <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-6">
+              <form method="post" action="{{ route('general.theme') }}" class="p-6 text-gray-900">
+                  @csrf
+                  @method('patch')
+                  <h3 class="text-lg font-medium text-gray-900">{{ __('Appearance') }}</h3>
+                  <p class="mt-1 text-sm text-gray-600">{{ __('Colour theme of the public CV page. The PDF is always light.') }}</p>
+                  <div class="mt-4 flex flex-wrap gap-6">
+                      @foreach ($themes as $value => $label)
+                          <label class="inline-flex items-center gap-2 text-sm">
+                              <input type="radio" name="theme" value="{{ $value }}" @checked($theme === $value) class="text-indigo-600 focus:ring-indigo-500">
+                              {{ $label }}
+                          </label>
+                      @endforeach
+                  </div>
+                  <x-input-error class="mt-2" :messages="$errors->get('theme')" />
+                  <div class="mt-4 flex items-center gap-4">
+                      <x-primary-button>{{ __('Save appearance') }}</x-primary-button>
+                      @if (session('status') === 'theme-updated')
+                          <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)" class="text-sm text-gray-600">{{ __('Saved.') }}</p>
+                      @endif
+                  </div>
+              </form>
+          </div>
+
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
               <div class="p-6 text-gray-900">

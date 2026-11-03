@@ -73,6 +73,7 @@ Route::middleware('auth')->group(function () {
   Route::delete('/projects/{id}', [ProjectController::class, 'destroy'])->name('project.destroy');
 
   Route::get('/general', [GeneralController::class, 'index'])->name('general');
+  Route::patch('/general/theme', [GeneralController::class, 'theme'])->name('general.theme');
   Route::get('/general/new', [GeneralController::class, 'new'])->name('general.new');
   Route::get('/general/{id}/edit', [GeneralController::class, 'edit'])->name('general.edit');
   Route::post('/general/create', [GeneralController::class, 'create'])->name('general.create');

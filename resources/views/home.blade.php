@@ -1,6 +1,8 @@
 @php
     $g = fn (string $key, string $default = '') => $generals[$key] ?? $default;
     $name = $g('name', 'Alexis Vargas');
+    // Appearance chosen in the admin: "system" follows the visitor's device.
+    $theme = in_array($g('theme'), ['light', 'dark'], true) ? $g('theme') : 'system';
     $headline = $g('occupation', 'Software Engineer');
     $metaDescription = $g('meta_description', \Illuminate\Support\Str::limit(preg_replace('/\s+/', ' ', strip_tags($g('biography'))), 155));
     $github = $g('github', 'https://github.com/lexisvar');
@@ -22,13 +24,13 @@
     ];
 @endphp
 <!DOCTYPE html>
-<html lang="en-AU">
+<html lang="en-AU"@if ($theme !== 'system') data-theme="{{ $theme }}"@endif>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $name }} · {{ $headline }}</title>
     <meta name="description" content="{{ $metaDescription }}">
-    <meta name="color-scheme" content="light dark">
+    <meta name="color-scheme" content="{{ $theme === 'system' ? 'light dark' : $theme }}">
     <link rel="canonical" href="{{ url('/') }}">
     <meta property="og:type" content="profile">
     <meta property="og:title" content="{{ $name }} · {{ $headline }}">
@@ -42,7 +44,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="{{ asset('css/site.css') }}?v=3" rel="stylesheet">
+    <link href="{{ asset('css/site.css') }}?v=4" rel="stylesheet">
     <script type="application/ld+json">
       {!! json_encode([
           '@context' => 'https://schema.org',

@@ -15,8 +15,10 @@
   --font: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
+/* Dark colours: automatic (visitor's device) unless the admin forces a theme
+   with data-theme="light" or data-theme="dark" on <html>. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #0b1120;
     --surface: #111a2e;
     --border: #1f2a40;
@@ -27,6 +29,18 @@
     --accent-soft: rgba(45, 212, 191, 0.1);
     --accent-text: #5eead4;
   }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0b1120;
+  --surface: #111a2e;
+  --border: #1f2a40;
+  --text: #e2e8f0;
+  --muted: #a5b4c8;
+  --subtle: #8796ab;
+  --accent: #2dd4bf;
+  --accent-soft: rgba(45, 212, 191, 0.1);
+  --accent-text: #5eead4;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -85,7 +99,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .btn:hover { text-decoration: none; border-color: var(--subtle); }
 .btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
 .btn-primary:hover { filter: brightness(1.08); border-color: var(--accent); }
-@media (prefers-color-scheme: dark) { .btn-primary { color: #04201d; } }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn-primary { color: #04201d; } }
+:root[data-theme="dark"] .btn-primary { color: #04201d; }
 .btn svg { width: 16px; height: 16px; }
 
 /* Key facts */
@@ -165,7 +180,7 @@ footer.site .container { display: flex; justify-content: space-between; flex-wra
 
 /* Print: a clean CV straight from the browser */
 @media print {
-  :root { --bg: #fff; --surface: #fff; --text: #000; --muted: #333; --subtle: #555; --border: #ccc; --accent: #0f766e; }
+  :root, :root:not([data-theme="light"]), :root[data-theme] { --bg: #fff; --surface: #fff; --text: #000; --muted: #333; --subtle: #555; --border: #ccc; --accent: #0f766e; }
   .topnav, .actions, .avatar, .contact-card .btn, footer.site { display: none !important; }
   .hero { padding: 0 0 12px; }
   section.block { padding: 14px 0; break-inside: auto; }
