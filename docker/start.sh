@@ -20,7 +20,7 @@ php artisan view:cache
 
 # Database: apply migrations, then create the admin user if configured.
 php artisan migrate --force
-php artisan app:create-admin
+php artisan app:create-admin || echo "app:create-admin did not create the admin user (see message above); the site starts anyway." >&2
 php artisan app:load-cv-content
 
 chown -R www-data:www-data storage bootstrap/cache
