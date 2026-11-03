@@ -43,6 +43,7 @@ class PublicCvTest extends TestCase
             'name' => 'Caissify',
             'role' => 'Founder & Lead Engineer',
             'stack' => 'Django, Vue, PostgreSQL, Flutter',
+            'start_date' => '2024-01-01',
             'description' => 'Chess learning platform.',
             'url' => 'https://example.com',
         ]);

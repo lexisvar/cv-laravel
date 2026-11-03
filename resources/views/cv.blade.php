@@ -29,6 +29,7 @@
         .stack { color: #555; font-style: italic; }
         .skills td { vertical-align: top; padding: 1px 8px 1px 0; }
         .skills td.cat { font-weight: bold; white-space: nowrap; }
+        @media screen { body { max-width: 820px; margin: 32px auto; padding: 0 16px; font-size: 13px; } }
     </style>
 </head>
 <body>
