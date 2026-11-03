@@ -19,6 +19,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ $name }} – CV</title>
+    @include('partials.favicon')
     <meta name="author" content="{{ $name }}">
     <meta name="subject" content="{{ $g('occupation') }}">
     <meta name="keywords" content="{{ $skillGroups->flatten()->pluck('name')->implode(', ') }}">
