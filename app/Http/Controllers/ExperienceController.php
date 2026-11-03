@@ -21,7 +21,7 @@ class ExperienceController extends Controller
   public function edit($id): View
   {
     return view('experience.edit', [
-      'experience' => Experience::find($id),
+      'experience' => Experience::findOrFail($id),
     ]);
   }
 
@@ -41,7 +41,7 @@ class ExperienceController extends Controller
 
   public function update(ExperienceUpdateRequest $request, $id): RedirectResponse
   {
-    $experience = Experience::find($id);
+    $experience = Experience::findOrFail($id);
     $experience->fill($request->validated());
     $experience->save();
 
@@ -50,7 +50,7 @@ class ExperienceController extends Controller
 
   public function destroy($id): RedirectResponse
   {
-    $experience = Experience::find($id);
+    $experience = Experience::findOrFail($id);
     $experience->delete();
     return Redirect::to('/experience');
   }

@@ -21,7 +21,7 @@ class EducationController extends Controller
   public function edit($id): View
   {
     return view('education.edit', [
-      'education' => Education::find($id),
+      'education' => Education::findOrFail($id),
     ]);
   }
 
@@ -41,7 +41,7 @@ class EducationController extends Controller
 
   public function update(EducationUpdateRequest $request, $id): RedirectResponse
   {
-    $education = Education::find($id);
+    $education = Education::findOrFail($id);
     $education->fill($request->validated());
     $education->save();
 
@@ -50,7 +50,7 @@ class EducationController extends Controller
 
   public function destroy($id): RedirectResponse
   {
-    $education = Education::find($id);
+    $education = Education::findOrFail($id);
     $education->delete();
     return Redirect::to('/education');
   }

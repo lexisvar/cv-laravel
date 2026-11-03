@@ -6,6 +6,7 @@ use App\Http\Controllers\SkillsController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\GeneralController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Audit;
 
@@ -53,6 +54,13 @@ Route::middleware('auth')->group(function () {
   Route::post('/education/create', [EducationController::class, 'create'])->name('education.create');
   Route::patch('/education/{id}/update', [EducationController::class, 'update'])->name('education.update');
   Route::delete('/education/{id}', [EducationController::class, 'destroy'])->name('education.destroy');
+
+  Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
+  Route::get('/projects/new', [ProjectController::class, 'new'])->name('project.new');
+  Route::get('/projects/{id}/edit', [ProjectController::class, 'edit'])->name('project.edit');
+  Route::post('/projects/create', [ProjectController::class, 'create'])->name('project.create');
+  Route::patch('/projects/{id}/update', [ProjectController::class, 'update'])->name('project.update');
+  Route::delete('/projects/{id}', [ProjectController::class, 'destroy'])->name('project.destroy');
 
   Route::get('/general', [GeneralController::class, 'index'])->name('general');
   Route::get('/general/new', [GeneralController::class, 'new'])->name('general.new');

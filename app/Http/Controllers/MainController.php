@@ -3,63 +3,63 @@
 namespace App\Http\Controllers;
 
 use App\Models\Audit;
-use App\Models\Skill;
-use App\Models\Experience;
 use App\Models\Education;
+use App\Models\Experience;
 use App\Models\General;
+use App\Models\Project;
+use App\Models\Skill;
+use Illuminate\Support\Str;
 use PDF;
 
 class MainController extends Controller
 {
-  public function index()
-  {
-    Audit::create(
-      [
-        'ip' => request()->getClientIp(),
-        'controller' => 'Main',
-        'function' => 'index',
-        'uagent' => request()->header('User-Agent')
-      ],
-    );
+    public function index()
+    {
+        $this->audit('index');
 
-    $data['skills'] = Skill::all();
-    $data['experiences'] = Experience::orderBy('start_date','desc')->get();
-    $data['educations'] = Education::orderBy('start_date','desc')->get();
-    $data['generals'] = General::all()->pluck('value', 'key')->all();
+        return view('home', $this->cvData());
+    }
 
-    return view('home', $data);
-  }
+    public function simple()
+    {
+        $this->audit('simple');
 
-  public function createPDF(){
-    Audit::create(
-      [
-        'ip' => request()->getClientIp(),
-        'controller' => 'Main',
-        'function' => 'createPDF',
-        'uagent' => request()->header('User-Agent')
-      ],
-    );
-    $data['skills'] = Skill::all();
-    $data['experiences'] = Experience::orderBy('start_date','desc')->get();
-    $data['educations'] = Education::orderBy('start_date','desc')->get();
-    $data['generals'] = General::all()->pluck('value', 'key')->all();
-    $pdf = PDF::loadView('cv', $data);
-    return $pdf->download('cv', $data);
-  }
+        return view('cv', $this->cvData());
+    }
 
-  public function simple(){
-    Audit::create(
-      [
-        'ip' => request()->getClientIp(),
-        'controller' => 'Main',
-        'function' => 'simple',
-        'uagent' => request()->header('User-Agent')
-      ],
-    );
-    $data['skills'] = Skill::all();
-    $data['experiences'] = Experience::orderBy('start_date','desc')->get();
-    $data['educations'] = Education::orderBy('start_date','desc')->get();
-    $data['generals'] = General::all()->pluck('value', 'key')->all();
-    return view('cv', $data);
-  }
+    public function createPDF()
+    {
+        $this->audit('createPDF');
+
+        $data = $this->cvData();
+        $filename = Str::slug($data['generals']['name'] ?? 'cv').'-CV.pdf';
+
+        return PDF::loadView('cv', $data)->download($filename);
+    }
+
+    /**
+     * Everything the public CV views need, loaded in one place.
+     */
+    private function cvData(): array
+    {
+        $skills = Skill::orderBy('sort_order')->orderBy('name')->get();
+
+        return [
+            'generals' => General::all()->pluck('value', 'key')->all(),
+            'skillGroups' => $skills->groupBy(fn ($skill) => $skill->category ?: 'Other'),
+            'experiences' => Experience::orderByDesc('start_date')->get(),
+            'projects' => Project::orderBy('sort_order')->orderByDesc('start_date')->get(),
+            'educations' => Education::orderByDesc('start_date')->get(),
+        ];
+    }
+
+    private function audit(string $function): void
+    {
+        Audit::create([
+            'ip' => request()->getClientIp(),
+            'controller' => 'Main',
+            'function' => $function,
+            'uagent' => Str::limit((string) request()->header('User-Agent'), 250, ''),
+        ]);
+    }
 }

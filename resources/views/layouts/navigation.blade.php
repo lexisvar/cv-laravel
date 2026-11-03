@@ -27,6 +27,11 @@
                   </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                  <x-nav-link :href="route('projects')" :active="request()->routeIs('projects') || request()->is('projects/*')">
+                      {{ __('Projects') }}
+                  </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                   <x-nav-link :href="route('education')" :active="request()->routeIs('education') || request()->is('education/*')">
                       {{ __('Education') }}
                   </x-nav-link>
@@ -90,14 +95,20 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('skills') || request()->is('skills/*')">
+            <x-responsive-nav-link :href="route('skills')" :active="request()->routeIs('skills') || request()->is('skills/*')">
               {{ __('Skills') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('experience')" :active="request()->routeIs('experience') || request()->is('experience/*')">
               {{ __('Experience') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('projects')" :active="request()->routeIs('projects') || request()->is('projects/*')">
+              {{ __('Projects') }}
+            </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('education')" :active="request()->routeIs('education') || request()->is('education/*')">
               {{ __('Education') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('general')" :active="request()->routeIs('general') || request()->is('general/*')">
+              {{ __('General') }}
             </x-responsive-nav-link>
         </div>
 

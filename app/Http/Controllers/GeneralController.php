@@ -21,7 +21,7 @@ class GeneralController extends Controller
   public function edit($id): View
   {
     return view('general.edit', [
-      'general' => General::find($id),
+      'general' => General::findOrFail($id),
     ]);
   }
 
@@ -41,7 +41,7 @@ class GeneralController extends Controller
 
   public function update(GeneralUpdateRequest $request, $id): RedirectResponse
   {
-    $general = General::find($id);
+    $general = General::findOrFail($id);
     $general->fill($request->validated());
     $general->save();
 
@@ -50,7 +50,7 @@ class GeneralController extends Controller
 
   public function destroy($id): RedirectResponse
   {
-    $general = General::find($id);
+    $general = General::findOrFail($id);
     $general->delete();
     return Redirect::to('/general');
   }

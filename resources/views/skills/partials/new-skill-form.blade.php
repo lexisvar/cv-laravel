@@ -20,8 +20,20 @@
       </div>
 
       <div>
-          <x-input-label for="percent" :value="__('Percent')" />
-          <x-text-input id="percent" name="percent" type="number" class="mt-1 block w-full" required autocomplete="percent" />
+          <x-input-label for="category" :value="__('Category (e.g. Backend, Frontend, Data, DevOps)')" />
+          <x-text-input id="category" name="category" type="text" class="mt-1 block w-full" :value="old('category')" />
+          <x-input-error class="mt-2" :messages="$errors->get('category')" />
+      </div>
+
+      <div>
+          <x-input-label for="sort_order" :value="__('Display order (0 first)')" />
+          <x-text-input id="sort_order" name="sort_order" type="number" min="0" class="mt-1 block w-full" :value="old('sort_order')" />
+          <x-input-error class="mt-2" :messages="$errors->get('sort_order')" />
+      </div>
+
+      <div>
+          <x-input-label for="percent" :value="__('Percent (optional, not shown publicly)')" />
+          <x-text-input id="percent" name="percent" type="number" class="mt-1 block w-full" autocomplete="percent" />
           <x-input-error class="mt-2" :messages="$errors->get('percent')" />
       </div>
 

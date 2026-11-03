@@ -1,38 +1,69 @@
+@php
+    $g = fn (string $key, string $default = '') => $generals[$key] ?? $default;
+    $name = $g('name', 'Alexis Vargas');
+    $headline = $g('occupation', 'Software Engineer');
+    $metaDescription = $g('meta_description', \Illuminate\Support\Str::limit(strip_tags($g('biography')), 155));
+    $github = $g('github', 'https://github.com/lexisvar');
+    $linkedin = $g('linkedin', 'https://www.linkedin.com/in/lexisvar');
+    $period = fn ($start, $finish) => ($start ? date('M Y', strtotime($start)) : '')
+        .($start ? ' – ' : '')
+        .($finish ? date('M Y', strtotime($finish)) : 'Present');
+@endphp
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-AU">
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Lexisvar CV</title>
+    <title>{{ $name }} · {{ $headline }}</title>
+    <meta name="description" content="{{ $metaDescription }}">
+    <link rel="canonical" href="{{ url('/') }}">
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="{{ $name }} · {{ $headline }}">
+    <meta property="og:description" content="{{ $metaDescription }}">
+    <meta property="og:url" content="{{ url('/') }}">
+    <meta property="og:image" content="{{ asset('images/alexisvargas.jpeg') }}">
+    <meta name="twitter:card" content="summary">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href="css/aos.css?ver=1.1.0" rel="stylesheet">
     <link href="css/bootstrap.min.css?ver=1.1.0" rel="stylesheet">
     <link href="css/main.css?ver=1.1.0" rel="stylesheet">
+    <link href="css/custom.css?ver=1.0.0" rel="stylesheet">
     <noscript>
       <style type="text/css">
-        [data-aos] {
-            opacity: 1 !important;
-            transform: translate(0) scale(1) !important;
-        }
+        [data-aos] { opacity: 1 !important; transform: translate(0) scale(1) !important; }
       </style>
     </noscript>
+    <script type="application/ld+json">
+      {!! json_encode([
+          '@context' => 'https://schema.org',
+          '@type' => 'Person',
+          'name' => $name,
+          'jobTitle' => $headline,
+          'url' => url('/'),
+          'sameAs' => [$github, $linkedin],
+          'address' => ['@type' => 'PostalAddress', 'addressLocality' => $g('address', 'Sydney, Australia')],
+      ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG) !!}
+    </script>
   </head>
   <body id="top">
     <header>
       <div class="profile-page sidebar-collapse">
         <nav class="navbar navbar-expand-lg fixed-top navbar-transparent bg-primary" color-on-scroll="400">
           <div class="container">
-            <div class="navbar-translate"><a class="navbar-brand" href="#" rel="tooltip">Developer CV</a>
+            <div class="navbar-translate"><a class="navbar-brand" href="#top">{{ $name }}</a>
               <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-bar bar1"></span><span class="navbar-toggler-bar bar2"></span><span class="navbar-toggler-bar bar3"></span></button>
             </div>
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
               <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link smooth-scroll" href="#about">About</a></li>
-                <li class="nav-item"><a class="nav-link smooth-scroll" href="#skill">Skills</a></li>
-                <!-- <li class="nav-item"><a class="nav-link smooth-scroll" href="#portfolio">Portfolio</a></li> -->
                 <li class="nav-item"><a class="nav-link smooth-scroll" href="#experience">Experience</a></li>
+                @if ($projects->isNotEmpty())
+                  <li class="nav-item"><a class="nav-link smooth-scroll" href="#projects">Projects</a></li>
+                @endif
+                <li class="nav-item"><a class="nav-link smooth-scroll" href="#skill">Skills</a></li>
+                <li class="nav-item"><a class="nav-link smooth-scroll" href="#education">Education</a></li>
                 <li class="nav-item"><a class="nav-link smooth-scroll" href="#contact">Contact</a></li>
               </ul>
             </div>
@@ -40,406 +71,216 @@
         </nav>
       </div>
     </header>
-    <div class="page-content">
-      <div>
-<div class="profile-page">
-  <div class="wrapper">
-    <div class="page-header page-header-small" filter-color="green">
-      <div class="page-header-image" data-parallax="true" style="background-image: url('images/bgroundd.jpg')"></div>
-      <div class="container">
-        <div class="content-center">
-          <div class="cc-profile-image"><a href="#"><img src="images/alexisvargas.jpeg" alt="Image"/></a></div>
-          <div class="h2 title">{{ $generals['name'] }}</div>
-          <p class="category text-white">{{ $generals['occupation'] }}</p>
-          <a class="btn btn-primary smooth-scroll mr-2" href="#contact" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Hire Me</a><a class="btn btn-primary" href="/export" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Download CV</a>
+
+    <main class="page-content">
+      <div class="profile-page">
+        <div class="wrapper">
+          <div class="page-header page-header-small" filter-color="green">
+            <div class="page-header-image" data-parallax="true" style="background-image: url('images/bgroundd.jpg')"></div>
+            <div class="container">
+              <div class="content-center">
+                <div class="cc-profile-image"><img src="images/alexisvargas.jpeg" alt="Photo of {{ $name }}"/></div>
+                <h1 class="h2 title">{{ $name }}</h1>
+                <p class="category text-white">{{ $headline }}</p>
+                @if ($g('availability'))
+                  <p class="cc-availability text-white">{{ $g('availability') }}</p>
+                @endif
+                <a class="btn btn-primary smooth-scroll mr-2" href="#contact">Get in touch</a>
+                <a class="btn btn-primary" href="/export">Download CV (PDF)</a>
+              </div>
+            </div>
+            <div class="section">
+              <div class="container">
+                <div class="button-container">
+                  <a class="btn btn-default btn-round btn-lg btn-icon" href="{{ $github }}" title="GitHub" aria-label="GitHub"><i class="fa fa-github"></i></a>
+                  <a class="btn btn-default btn-round btn-lg btn-icon" href="{{ $linkedin }}" title="LinkedIn" aria-label="LinkedIn"><i class="fa fa-linkedin-square"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="section">
+
+      <section class="section" id="about">
         <div class="container">
-          <div class="button-container">
-            <a class="btn btn-default btn-round btn-lg btn-icon" href="https://github.com/lexisvar" rel="tooltip" title="Follow me on Github">
-              <i class="fa fa-github"></i>
-            </a>
-            <a class="btn btn-default btn-round btn-lg btn-icon" href="https://www.linkedin.com/in/lexisvar" rel="tooltip" title="Follow me on Linkedin">
-              <i class="fa fa-linkedin-square"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="section" id="about">
-  <div class="container">
-    <div class="card" data-aos="fade-up" data-aos-offset="10">
-      <div class="row">
-        <div class="col-lg-6 col-md-12">
-          <div class="card-body">
-            <div class="h4 mt-0 title">About</div>
-            <p>
-            {{ $generals['biography'] }}
-            </p>
-          </div>
-        </div>
-        <div class="col-lg-6 col-md-12">
-          <div class="card-body">
-            <div class="h4 mt-0 title">Basic Information</div>
-            <!-- <div class="row">
-              <div class="col-sm-4"><strong class="text-uppercase">Age:</strong></div>
-              <div class="col-sm-8"><span id="age"></span></div>
-            </div> -->
-            <div class="row mt-3">
-              <div class="col-sm-4"><strong class="text-uppercase">Email:</strong></div>
-              <div class="col-sm-8">{{ $generals['email'] }}</div>
-            </div>
-            <div class="row mt-3">
-              <div class="col-sm-4"><strong class="text-uppercase">Phone:</strong></div>
-              <div class="col-sm-8">{{ $generals['phone'] }}</div>
-            </div>
-            <div class="row mt-3">
-              <div class="col-sm-4"><strong class="text-uppercase">Address:</strong></div>
-              <div class="col-sm-8">{{ $generals['address'] }}</div>
-            </div>
-            <div class="row mt-3">
-              <div class="col-sm-4"><strong class="text-uppercase">Language:</strong></div>
-              <div class="col-sm-8">{{ $generals['language'] }}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="section" id="skill">
-  <div class="container">
-    <div class="h4 text-center mb-4 title">Professional Skills</div>
-
-    <div class="card" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
-      <div class="card-body">
-        <div class="row">
-        @foreach ($skills as $skill)
-          <div class="col-md-6">
-            <div class="progress-container progress-primary"><span class="progress-badge">{{$skill->name}}</span>
-              <div class="progress">
-                <div class="progress-bar progress-bar-primary" data-aos="progress-full" data-aos-offset="10" data-aos-duration="2000" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $skill['percent']; ?>%;"></div><span class="progress-value">{{$skill->percent}}%</span>
+          <div class="card" data-aos="fade-up" data-aos-offset="10">
+            <div class="row">
+              <div class="col-lg-7 col-md-12">
+                <div class="card-body">
+                  <h2 class="h4 mt-0 title">About</h2>
+                  <x-rich-text :text="$g('biography')" />
                 </div>
               </div>
-          </div>
-        @endforeach
-      </div>
-    </div>
-  </div>
-</div>
-<!-- <div class="section" id="portfolio">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 ml-auto mr-auto">
-        <div class="h4 text-center mb-4 title">Portfolio</div>
-        <div class="nav-align-center">
-          <ul class="nav nav-pills nav-pills-primary" role="tablist">
-            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#web-development" role="tablist"><i class="fa fa-laptop" aria-hidden="true"></i></a></li>
-            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#graphic-design" role="tablist"><i class="fa fa-picture-o" aria-hidden="true"></i></a></li>
-            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Photography" role="tablist"><i class="fa fa-camera" aria-hidden="true"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="tab-content gallery mt-5">
-      <div class="tab-pane active" id="web-development">
-        <div class="ml-auto mr-auto">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="cc-porfolio-image img-raised" data-aos="fade-up" data-aos-anchor-placement="top-bottom"><a href="#web-development">
-                  <figure class="cc-effect"><img src="images/project-1.jpg" alt="Image"/>
-                    <figcaption>
-                      <div class="h4">Recent Project</div>
-                      <p>Web Development</p>
-                    </figcaption>
-                  </figure></a></div>
-              <div class="cc-porfolio-image img-raised" data-aos="fade-up" data-aos-anchor-placement="top-bottom"><a href="#web-development">
-                  <figure class="cc-effect"><img src="images/project-2.jpg" alt="Image"/>
-                    <figcaption>
-                      <div class="h4">Startup Project</div>
-                      <p>Web Development</p>
-                    </figcaption>
-                  </figure></a></div>
-            </div>
-            <div class="col-md-6">
-              <div class="cc-porfolio-image img-raised" data-aos="fade-up" data-aos-anchor-placement="top-bottom"><a href="#web-development">
-                  <figure class="cc-effect"><img src="images/project-3.jpg" alt="Image"/>
-                    <figcaption>
-                      <div class="h4">Food Order Project</div>
-                      <p>Web Development</p>
-                    </figcaption>
-                  </figure></a></div>
-              <div class="cc-porfolio-image img-raised" data-aos="fade-up" data-aos-anchor-placement="top-bottom"><a href="#web-development">
-                  <figure class="cc-effect"><img src="images/project-4.jpg" alt="Image"/>
-                    <figcaption>
-                      <div class="h4">Web Advertising Project</div>
-                      <p>Web Development</p>
-                    </figcaption>
-                  </figure></a></div>
+              <div class="col-lg-5 col-md-12">
+                <div class="card-body">
+                  <h2 class="h4 mt-0 title">Basic Information</h2>
+                  @foreach (['email' => 'Email', 'address' => 'Location', 'language' => 'Languages', 'work_rights' => 'Work rights'] as $key => $label)
+                    @if ($g($key))
+                      <div class="row mt-3">
+                        <div class="col-sm-4"><strong class="text-uppercase">{{ $label }}:</strong></div>
+                        <div class="col-sm-8">
+                          @if ($key === 'email')
+                            <a href="mailto:{{ $g('email') }}">{{ $g('email') }}</a>
+                          @else
+                            {{ $g($key) }}
+                          @endif
+                        </div>
+                      </div>
+                    @endif
+                  @endforeach
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="tab-pane" id="graphic-design" role="tabpanel">
-        <div class="ml-auto mr-auto">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="cc-porfolio-image img-raised" data-aos="fade-up" data-aos-anchor-placement="top-bottom"><a href="#graphic-design">
-                  <figure class="cc-effect"><img src="images/graphic-design-1.jpg" alt="Image"/>
-                    <figcaption>
-                      <div class="h4">Triangle Pattern</div>
-                      <p>Graphic Design</p>
-                    </figcaption>
-                  </figure></a></div>
-              <div class="cc-porfolio-image img-raised" data-aos="fade-up" data-aos-anchor-placement="top-bottom"><a href="#graphic-design">
-                  <figure class="cc-effect"><img src="images/graphic-design-2.jpg" alt="Image"/>
-                    <figcaption>
-                      <div class="h4">Abstract Umbrella</div>
-                      <p>Graphic Design</p>
-                    </figcaption>
-                  </figure></a></div>
-            </div>
-            <div class="col-md-6">
-              <div class="cc-porfolio-image img-raised" data-aos="fade-up" data-aos-anchor-placement="top-bottom"><a href="#graphic-design">
-                  <figure class="cc-effect"><img src="images/graphic-design-3.jpg" alt="Image"/>
-                    <figcaption>
-                      <div class="h4">Cube Surface Texture</div>
-                      <p>Graphic Design</p>
-                    </figcaption>
-                  </figure></a></div>
-              <div class="cc-porfolio-image img-raised" data-aos="fade-up" data-aos-anchor-placement="top-bottom"><a href="#graphic-design">
-                  <figure class="cc-effect"><img src="images/graphic-design-4.jpg" alt="Image"/>
-                    <figcaption>
-                      <div class="h4">Abstract Line</div>
-                      <p>Graphic Design</p>
-                    </figcaption>
-                  </figure></a></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="tab-pane" id="Photography" role="tabpanel">
-        <div class="ml-auto mr-auto">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="cc-porfolio-image img-raised" data-aos="fade-up" data-aos-anchor-placement="top-bottom"><a href="#Photography">
-                  <figure class="cc-effect"><img src="images/photography-1.jpg" alt="Image"/>
-                    <figcaption>
-                      <div class="h4">Photoshoot</div>
-                      <p>Photography</p>
-                    </figcaption>
-                  </figure></a></div>
-              <div class="cc-porfolio-image img-raised" data-aos="fade-up" data-aos-anchor-placement="top-bottom"><a href="#Photography">
-                  <figure class="cc-effect"><img src="images/photography-3.jpg" alt="Image"/>
-                    <figcaption>
-                      <div class="h4">Wedding Photoshoot</div>
-                      <p>Photography</p>
-                    </figcaption>
-                  </figure></a></div>
-            </div>
-            <div class="col-md-6">
-              <div class="cc-porfolio-image img-raised" data-aos="fade-up" data-aos-anchor-placement="top-bottom"><a href="#Photography">
-                  <figure class="cc-effect"><img src="images/photography-2.jpg" alt="Image"/>
-                    <figcaption>
-                      <div class="h4">Beach Photoshoot</div>
-                      <p>Photography</p>
-                    </figcaption>
-                  </figure></a></div>
-              <div class="cc-porfolio-image img-raised" data-aos="fade-up" data-aos-anchor-placement="top-bottom"><a href="#Photography">
-                  <figure class="cc-effect"><img src="images/photography-4.jpg" alt="Image"/>
-                    <figcaption>
-                      <div class="h4">Nature Photoshoot</div>
-                      <p>Photography</p>
-                    </figcaption>
-                  </figure></a></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-<div class="section" id="experience">
-  <div class="container cc-experience">
-    <div class="h4 text-center mb-4 title">Work Experience</div>
-    @foreach ($experiences as $experience)
-      <div class="card">
-        <div class="row">
-          <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
-            <div class="card-body cc-experience-header">
-              <p>{{ date('M Y', strtotime($experience->start_date)) }} - {{ $experience->finish_date ? date('M Y', strtotime($experience->finish_date)) : 'CURRENT' }}</p>
-              <div class="h5">{{$experience->company}}</div>
-            </div>
-          </div>
-          <div class="col-md-9" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">
-            <div class="card-body">
-              <div class="h5">{{$experience->occupation}}</div>
-              <p>{{$experience->description}}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    @endforeach
+      </section>
 
-  </div>
-</div>
-<div class="section">
-  <div class="container cc-education">
-    <div class="h4 text-center mb-4 title">Education</div>
-    @foreach ($educations as $education)
-    <div class="card">
-      <div class="row">
-        <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
-          <div class="card-body cc-education-header">
-            <p>{{ date('M Y', strtotime($education->start_date)) }} - {{ $education->finish_date ? date('M Y', strtotime($education->finish_date)) : 'CURRENT' }}</p>
-            <div class="h5">{{$education->study_title}}</div>
-          </div>
-        </div>
-        <div class="col-md-9" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">
-          <div class="card-body">
-            <div class="h5">{{$education->study_name}}</div>
-            <p class="category">{{$education->college}}</p>
-            <p>{{$education->description}}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    @endforeach
-
-  </div>
-</div>
-<!-- <div class="section" id="reference">
-  <div class="container cc-reference">
-    <div class="h4 mb-4 text-center title">References</div>
-    <div class="card" data-aos="zoom-in">
-      <div class="carousel slide" id="cc-Indicators" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li class="active" data-target="#cc-Indicators" data-slide-to="0"></li>
-          <li data-target="#cc-Indicators" data-slide-to="1"></li>
-          <li data-target="#cc-Indicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="row">
-              <div class="col-lg-2 col-md-3 cc-reference-header"><img src="images/reference-image-1.jpg" alt="Image"/>
-                <div class="h5 pt-2">Aiyana</div>
-                <p class="category">CEO / WEBM</p>
-              </div>
-              <div class="col-lg-10 col-md-9">
-                <p> Habitasse venenatis commodo tempor eleifend arcu sociis sollicitudin ante pulvinar ad, est porta cras erat ullamcorper volutpat metus duis platea convallis, tortor primis ac quisque etiam luctus nisl nullam fames. Ligula purus suscipit tempus nascetur curabitur donec nam ullamcorper, laoreet nullam mauris dui aptent facilisis neque elementum ac, risus semper felis parturient fringilla rhoncus eleifend.</p>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row">
-              <div class="col-lg-2 col-md-3 cc-reference-header"><img src="images/reference-image-2.jpg" alt="Image"/>
-                <div class="h5 pt-2">Braiden</div>
-                <p class="category">CEO / Creativem</p>
-              </div>
-              <div class="col-lg-10 col-md-9">
-                <p> Habitasse venenatis commodo tempor eleifend arcu sociis sollicitudin ante pulvinar ad, est porta cras erat ullamcorper volutpat metus duis platea convallis, tortor primis ac quisque etiam luctus nisl nullam fames. Ligula purus suscipit tempus nascetur curabitur donec nam ullamcorper, laoreet nullam mauris dui aptent facilisis neque elementum ac, risus semper felis parturient fringilla rhoncus eleifend.</p>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row">
-              <div class="col-lg-2 col-md-3 cc-reference-header"><img src="images/reference-image-3.jpg" alt="Image"/>
-                <div class="h5 pt-2">Alexander</div>
-                <p class="category">CEO / Webnote</p>
-              </div>
-              <div class="col-lg-10 col-md-9">
-                <p> Habitasse venenatis commodo tempor eleifend arcu sociis sollicitudin ante pulvinar ad, est porta cras erat ullamcorper volutpat metus duis platea convallis, tortor primis ac quisque etiam luctus nisl nullam fames. Ligula purus suscipit tempus nascetur curabitur donec nam ullamcorper, laoreet nullam mauris dui aptent facilisis neque elementum ac, risus semper felis parturient fringilla rhoncus eleifend.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-<div class="section" id="contact">
-  <div class="cc-contact-information" style="background-image: url('images/staticmap.png')">
-    <div class="container">
-      <div class="cc-contact">
-        <div class="row">
-          <div class="col-md-9">
-            <div class="card mb-0" data-aos="zoom-in">
-              <div class="h4 text-center title">Contact Me</div>
+      <section class="section" id="experience">
+        <div class="container cc-experience">
+          <h2 class="h4 text-center mb-4 title">Work Experience</h2>
+          @foreach ($experiences as $experience)
+            <article class="card">
               <div class="row">
-                <!-- <div class="col-md-6">
-                  <div class="card-body">
-                    <form action="https://formspree.io/your@email.com" method="POST">
-                      <div class="p pb-3"><strong>Feel free to contact me </strong></div>
-                      <div class="row mb-3">
-                        <div class="col">
-                          <div class="input-group"><span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input class="form-control" type="text" name="name" placeholder="Name" required="required"/>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row mb-3">
-                        <div class="col">
-                          <div class="input-group"><span class="input-group-addon"><i class="fa fa-file-text"></i></span>
-                            <input class="form-control" type="text" name="Subject" placeholder="Subject" required="required"/>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row mb-3">
-                        <div class="col">
-                          <div class="input-group"><span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                            <input class="form-control" type="email" name="_replyto" placeholder="E-mail" required="required"/>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row mb-3">
-                        <div class="col">
-                          <div class="form-group">
-                            <textarea class="form-control" name="message" placeholder="Your Message" required="required"></textarea>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col">
-                          <button class="btn btn-primary" type="submit">Send</button>
-                        </div>
-                      </div>
-                    </form>
+                <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
+                  <div class="card-body cc-experience-header">
+                    <p>{{ $period($experience->start_date, $experience->finish_date) }}</p>
+                    <div class="h5">{{ $experience->company }}</div>
                   </div>
-                </div> -->
-                <div class="col-md-6">
+                </div>
+                <div class="col-md-9" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">
                   <div class="card-body">
-                    <p class="mb-0"><strong>Address </strong></p>
-                    <p class="pb-2">{{ $generals['address'] }}</p>
-                    <p class="mb-0"><strong>Phone</strong></p>
-                    <p class="pb-2">{{ $generals['phone'] }}</p>
-                    <p class="mb-0"><strong>Email</strong></p>
-                    <p>{{ $generals['email'] }}</p>
+                    <h3 class="h5">{{ $experience->occupation }}</h3>
+                    <x-rich-text :text="$experience->description" />
+                  </div>
+                </div>
+              </div>
+            </article>
+          @endforeach
+        </div>
+      </section>
+
+      @if ($projects->isNotEmpty())
+        <section class="section" id="projects">
+          <div class="container">
+            <h2 class="h4 text-center mb-4 title">Projects</h2>
+            @foreach ($projects as $project)
+              <article class="card cc-project" data-aos="fade-up" data-aos-offset="10">
+                <div class="card-body">
+                  <div class="d-flex flex-wrap justify-content-between align-items-baseline">
+                    <h3 class="h5 mb-1">{{ $project->name }}</h3>
+                    @if ($project->start_date)
+                      <span class="text-muted small">{{ $period($project->start_date, $project->finish_date) }}</span>
+                    @endif
+                  </div>
+                  @if ($project->role)
+                    <p class="category mb-2">{{ $project->role }}</p>
+                  @endif
+                  <x-rich-text :text="$project->description" />
+                  @if ($project->stackList())
+                    <ul class="cc-chips" aria-label="Tech stack">
+                      @foreach ($project->stackList() as $tech)
+                        <li>{{ $tech }}</li>
+                      @endforeach
+                    </ul>
+                  @endif
+                  @if ($project->url || $project->repo_url)
+                    <p class="mt-2 mb-0">
+                      @if ($project->url)<a href="{{ $project->url }}" rel="noopener" target="_blank">Live site</a>@endif
+                      @if ($project->url && $project->repo_url) · @endif
+                      @if ($project->repo_url)<a href="{{ $project->repo_url }}" rel="noopener" target="_blank">Source</a>@endif
+                    </p>
+                  @endif
+                </div>
+              </article>
+            @endforeach
+          </div>
+        </section>
+      @endif
+
+      <section class="section" id="skill">
+        <div class="container">
+          <h2 class="h4 text-center mb-4 title">Technical Skills</h2>
+          <div class="card" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+            <div class="card-body">
+              <div class="row">
+                @foreach ($skillGroups as $category => $skills)
+                  <div class="col-md-6 mb-3">
+                    <h3 class="h6 text-uppercase mb-2">{{ $category }}</h3>
+                    <ul class="cc-chips">
+                      @foreach ($skills as $skill)
+                        <li>{{ $skill->name }}</li>
+                      @endforeach
+                    </ul>
+                  </div>
+                @endforeach
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="education">
+        <div class="container cc-education">
+          <h2 class="h4 text-center mb-4 title">Education</h2>
+          @foreach ($educations as $education)
+            <article class="card">
+              <div class="row">
+                <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
+                  <div class="card-body cc-education-header">
+                    <p>{{ $period($education->start_date, $education->finish_date) }}</p>
+                    <div class="h5">{{ $education->study_title }}</div>
+                  </div>
+                </div>
+                <div class="col-md-9" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">
+                  <div class="card-body">
+                    <h3 class="h5">{{ $education->study_name }}</h3>
+                    <p class="category">{{ $education->college }}</p>
+                    <x-rich-text :text="$education->description" />
+                  </div>
+                </div>
+              </div>
+            </article>
+          @endforeach
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="cc-contact-information" style="background-image: url('images/staticmap.png')">
+          <div class="container">
+            <div class="cc-contact">
+              <div class="row">
+                <div class="col-md-9">
+                  <div class="card mb-0" data-aos="zoom-in">
+                    <h2 class="h4 text-center title">Contact</h2>
+                    <div class="card-body">
+                      @if ($g('address'))
+                        <p class="mb-0"><strong>Location</strong></p>
+                        <p class="pb-2">{{ $g('address') }}</p>
+                      @endif
+                      @if ($g('phone') && $g('show_phone', '1') === '1')
+                        <p class="mb-0"><strong>Phone</strong></p>
+                        <p class="pb-2"><a href="tel:{{ preg_replace('/[^+\d]/', '', $g('phone')) }}">{{ $g('phone') }}</a></p>
+                      @endif
+                      <p class="mb-0"><strong>Email</strong></p>
+                      <p><a href="mailto:{{ $g('email') }}">{{ $g('email') }}</a></p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div></div>
-    </div>
+      </section>
+    </main>
+
     <footer class="footer">
       <div class="container text-center">
-        <a class="cc-github btn btn-link" href="https://github.com/lexisvar">
-          <i class="fa fa-github fa-2x " aria-hidden="true"></i>
-        </a>
-        <a class="cc-linkedin btn btn-link " href="https://www.linkedin.com/in/lexisvar/">
-          <i class="fa fa-linkedin fa-2x " aria-hidden="true"></i>
-        </a>
+        <a class="cc-github btn btn-link" href="{{ $github }}" aria-label="GitHub"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a>
+        <a class="cc-linkedin btn btn-link" href="{{ $linkedin }}" aria-label="LinkedIn"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>
       </div>
-      <div class="h4 title text-center">{{ $generals['name'] }}</div>
+      <div class="h4 title text-center">{{ $name }}</div>
       <div class="text-center text-muted">
-        <p>&copy; All rights reserved.</p>
+        <p>&copy; {{ date('Y') }} {{ $name }}</p>
       </div>
     </footer>
     <script src="js/core/jquery.3.2.1.min.js?ver=1.1.0"></script>
@@ -448,20 +289,5 @@
     <script src="js/now-ui-kit.js?ver=1.1.0"></script>
     <script src="js/aos.js?ver=1.1.0"></script>
     <script src="scripts/main.js?ver=1.1.0"></script>
-    <!-- <script>
-      function getAge(dateString) {
-      var today = new Date();
-      var birthDate = new Date(dateString);
-      var age = today.getFullYear() - birthDate.getFullYear();
-      var m = today.getMonth() - birthDate.getMonth();
-        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-          age--;
-        }
-      return age;
-      }
-
-      span = document.getElementById("age");
-      span.innerHTML = getAge("1989/09/06");
-    </script> -->
   </body>
 </html>

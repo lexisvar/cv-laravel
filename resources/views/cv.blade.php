@@ -1,130 +1,117 @@
-<!DOCTYPE HTML>
-<html lang="en-US">
-
+@php
+    $g = fn (string $key, string $default = '') => $generals[$key] ?? $default;
+    $name = $g('name', 'Alexis Vargas');
+    $period = fn ($start, $finish) => ($start ? date('M Y', strtotime($start)) : '')
+        .($start ? ' – ' : '')
+        .($finish ? date('M Y', strtotime($finish)) : 'Present');
+@endphp
+<!DOCTYPE html>
+<html lang="en-AU">
 <head>
     <meta charset="UTF-8">
-    <title>CV {{ $generals['name'] }}</title>
-
-    <link rel="stylesheet" href="css/cv.css" />
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>{{ $name }} – CV</title>
+    {{-- Self-contained styles: single column, ATS-friendly, no remote assets. --}}
+    <style>
+        @page { margin: 28px 36px; }
+        body { font-family: DejaVu Sans, Helvetica, Arial, sans-serif; font-size: 10.5px; line-height: 1.45; color: #222; margin: 0; }
+        a { color: #0b5394; text-decoration: none; }
+        h1 { font-size: 22px; margin: 0; }
+        h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #0b5394; border-bottom: 1px solid #0b5394; padding-bottom: 2px; margin: 16px 0 8px; }
+        h3 { font-size: 11.5px; margin: 0; }
+        p { margin: 0 0 4px; }
+        ul { margin: 2px 0 4px 14px; padding: 0; }
+        li { margin-bottom: 2px; }
+        .headline { font-size: 12.5px; color: #444; margin-top: 2px; }
+        .contact { margin-top: 6px; color: #444; }
+        .entry { margin-bottom: 10px; page-break-inside: avoid; }
+        .meta { color: #555; margin-bottom: 3px; }
+        .meta .date { float: right; }
+        .stack { color: #555; font-style: italic; }
+        .skills td { vertical-align: top; padding: 1px 8px 1px 0; }
+        .skills td.cat { font-weight: bold; white-space: nowrap; }
+    </style>
 </head>
-
 <body>
-    <div class="container">
-        <header class="w3-row">
-            <div class="w3-col s6">
-                <h1 id="name">{{ $generals['name'] }}</h1>
-                <div id="designation">
-                    <span class="title"><i>{{ $generals['occupation'] }}</i></span><br>
-                </div>
+    <header>
+        <h1>{{ $name }}</h1>
+        <div class="headline">{{ $g('occupation') }}</div>
+        <div class="contact">
+            {{ $g('address') }}
+            @if ($g('email')) · <a href="mailto:{{ $g('email') }}">{{ $g('email') }}</a> @endif
+            @if ($g('phone')) · {{ $g('phone') }} @endif
+            <br>
+            <a href="{{ url('/') }}">{{ preg_replace('#^https?://#', '', url('/')) }}</a>
+            · <a href="{{ $g('github', 'https://github.com/lexisvar') }}">GitHub</a>
+            · <a href="{{ $g('linkedin', 'https://www.linkedin.com/in/lexisvar') }}">LinkedIn</a>
+            @if ($g('work_rights')) <br>{{ $g('work_rights') }} @endif
+        </div>
+    </header>
+
+    @if ($g('biography'))
+        <h2>Summary</h2>
+        <x-rich-text :text="$g('biography')" />
+    @endif
+
+    <h2>Experience</h2>
+    @foreach ($experiences as $experience)
+        <div class="entry">
+            <div class="meta">
+                <span class="date">{{ $period($experience->start_date, $experience->finish_date) }}</span>
+                <h3>{{ $experience->occupation }} — {{ $experience->company }}</h3>
             </div>
-            <div class="w3-col s6 w3-right-align">
-                <div id="designation">
-                    <span class="github"><a href="https://github.com/lexisvar/">Github</a></span><br>
-                    <span class="linkedin"><a href="https://www.linkedin.com/in/lexisvar/">LinkedIn</a></span><br>
-                    <span class="page"><a href="https://lexisvar.me/">https://lexisvar.me</a></span>
+            <x-rich-text :text="$experience->description" />
+        </div>
+    @endforeach
+
+    @if ($projects->isNotEmpty())
+        <h2>Projects</h2>
+        @foreach ($projects as $project)
+            <div class="entry">
+                <div class="meta">
+                    @if ($project->start_date)
+                        <span class="date">{{ $period($project->start_date, $project->finish_date) }}</span>
+                    @endif
+                    <h3>{{ $project->name }}@if ($project->role) — {{ $project->role }}@endif</h3>
                 </div>
-                <div class="contact">
-                    <div class="email">{{ $generals['email'] }}</div>
-                    <div class="address">{{ $generals['address'] }}</div>
-                    <div class="phone">{{ $generals['phone'] }}</div>
-                    <div class="language">{{ $generals['language'] }}</div>
-                </div>
-            </div>
-        </header>
-        <div class="content" role=main>
-            <section id="objective">
-                <h2 class="title">About</h2>
-                <hr class="hr-title">
-                <div class="description">
+                <x-rich-text :text="$project->description" />
+                @if ($project->stackList())
+                    <p class="stack">{{ implode(', ', $project->stackList()) }}</p>
+                @endif
+                @if ($project->url || $project->repo_url)
                     <p>
-                    {{ $generals['biography'] }}
+                        @if ($project->url)<a href="{{ $project->url }}">{{ preg_replace('#^https?://#', '', $project->url) }}</a>@endif
+                        @if ($project->url && $project->repo_url) · @endif
+                        @if ($project->repo_url)<a href="{{ $project->repo_url }}">{{ preg_replace('#^https?://#', '', $project->repo_url) }}</a>@endif
                     </p>
-                </div> <!-- end description -->
-            </section>
-            <section id="experience">
-                <h2 class="title">Experience</h2>
-                <hr>
-                <div class="description">
-                    <ul>
-                        @foreach ($experiences as $experience)
-                        <!-- Project 1 -->
-                        <li>
-                            <section class="project">
-                                <h3 class="title">{{$experience->occupation}}</h3>
-                                <div class="meta">
-                                    <span class="field">{{$experience->company}}</span>
-                                    <span class="date">{{ date('M Y', strtotime($experience->start_date)) }} - {{ $experience->finish_date ? date('M Y', strtotime($experience->finish_date)) : 'CURRENT' }}</span>
-                                </div>
-                                <p class="description">{{$experience->description}} </p>
-                            </section> <!-- end project description -->
-                        </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </section>
-            <section id="education">
-                <h2 class="title">Education</h2>
-                <hr>
-                <div class="description">
-                    <ul>
-                        @foreach ($educations as $education)
-                        <!-- Project 1 -->
-                        <li>
-                            <section class="project">
-                                <h3 class="title">{{$education->study_name}} ({{$education->study_title}})</h3>
-                                <div class="meta">
-                                    <span>{{$education->college}}</span>
-                                    <span class="date">{{ date('M Y', strtotime($education->start_date)) }} - {{ $education->finish_date ? date('M Y', strtotime($education->finish_date)) : 'CURRENT' }}</span>
-                                </div>
-                                <p class="description">{{$education->description}} </p>
-                            </section> <!-- end project description -->
-                        </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </section>
-            <section id="skills">
-                <h2 class="title">Skills</h2>
-                <hr>
-                <div class="description">
-                    <div style="float: left; width: 50%;">
-                        <ul>
-                            @php $half = ceil(count($skills) / 2); @endphp
-                            @foreach ($skills->take($half) as $skill)
-                            <li>
-                                <section class="skill">
-                                    <h6 class="title">{{$skill->name}}: {{$skill->percent}}%</h6>
-                                </section>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div style="float: right; width: 50%;">
-                        <ul>
-                            @foreach ($skills->skip($half) as $skill)
-                            <li>
-                                <section class="skill">
-                                    <h6 class="title">{{$skill->name}}: {{$skill->percent}}%</h6>
-                                </section>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div style="clear: both;"></div>
-                </div>
-            </section>
+                @endif
+            </div>
+        @endforeach
+    @endif
 
-            <!-- Training/ seminars -->
-            <!-- Scholistics Achievements -->
-            <!-- Technical Skills -->
-            <!-- Extra-Curricular Activities -->
-            <!-- Personal Informations -->
-            <!-- References -->
-            <!-- Declarations -->
-            <!-- signatory -->
-        </div> <!-- end main content -->
-    </div> <!-- end container -->
+    @if ($skillGroups->isNotEmpty())
+        <h2>Technical Skills</h2>
+        <table class="skills">
+            @foreach ($skillGroups as $category => $skills)
+                <tr>
+                    <td class="cat">{{ $category }}</td>
+                    <td>{{ $skills->pluck('name')->implode(', ') }}</td>
+                </tr>
+            @endforeach
+        </table>
+    @endif
+
+    <h2>Education</h2>
+    @foreach ($educations as $education)
+        <div class="entry">
+            <div class="meta">
+                <span class="date">{{ $period($education->start_date, $education->finish_date) }}</span>
+                <h3>{{ $education->study_name }}@if ($education->study_title) ({{ $education->study_title }})@endif</h3>
+            </div>
+            <p>{{ $education->college }}</p>
+            @if ($g('pdf_education_descriptions', '0') === '1')
+                <x-rich-text :text="$education->description" />
+            @endif
+        </div>
+    @endforeach
 </body>
-
 </html>

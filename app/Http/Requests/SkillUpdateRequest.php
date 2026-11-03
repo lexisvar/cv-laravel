@@ -14,8 +14,10 @@ class SkillUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['string', 'max:255'],
-            'percent' => [ 'integer','between:0,100'],
+            'name' => ['required', 'string', 'max:255'],
+            'category' => ['nullable', 'string', 'max:255'],
+            'sort_order' => ['nullable', 'integer', 'min:0'],
+            'percent' => ['nullable', 'integer', 'between:0,100'],
         ];
     }
 }
