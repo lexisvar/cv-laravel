@@ -34,7 +34,9 @@
     <meta property="og:title" content="{{ $name }} · {{ $headline }}">
     <meta property="og:description" content="{{ $metaDescription }}">
     <meta property="og:url" content="{{ url('/') }}">
-    <meta property="og:image" content="{{ asset('images/alexisvargas.jpeg') }}">
+    <meta property="og:image" content="{{ asset('images/alexisvargas-og.jpg') }}">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="800">
     <meta name="twitter:card" content="summary">
     <link rel="icon" href="{{ asset('favicon.ico') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,7 +76,7 @@
             <div class="container">
                 <div class="hero-inner">
                     @if ($g('show_photo', '1') === '1')
-                        <img class="avatar" src="{{ asset('images/alexisvargas.jpeg') }}" alt="Portrait of {{ $name }}" width="112" height="112">
+                        <img class="avatar" src="{{ asset('images/alexisvargas.jpeg') }}?v=3" alt="Portrait of {{ $name }}" width="112" height="112">
                     @endif
                     <div>
                         <h1>{{ $name }}</h1>
