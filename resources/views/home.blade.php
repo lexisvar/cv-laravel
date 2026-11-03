@@ -62,8 +62,8 @@
             <a class="brand" href="#top">{{ $name }}</a>
             <ul>
                 <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
                 @if ($projects->isNotEmpty())<li><a href="#projects">Projects</a></li>@endif
+                <li><a href="#experience">Experience</a></li>
                 @if ($skillGroups->isNotEmpty())<li><a href="#skills">Skills</a></li>@endif
                 <li><a href="#education">Education</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -115,24 +115,6 @@
             </div>
         </section>
 
-        <section class="block" id="experience">
-            <div class="container">
-                <h2>Experience</h2>
-                @foreach ($experiences as $experience)
-                    <article class="entry {{ $isCompact($experience->finish_date) ? 'compact' : '' }}">
-                        <div class="when">{{ $period($experience->start_date, $experience->finish_date) }}</div>
-                        <div>
-                            <h3>{{ $experience->occupation }}</h3>
-                            <p class="org">{{ $experience->company }}</p>
-                            @unless ($isCompact($experience->finish_date))
-                                <x-rich-text :text="$experience->description" />
-                            @endunless
-                        </div>
-                    </article>
-                @endforeach
-            </div>
-        </section>
-
         @if ($projects->isNotEmpty())
             <section class="block" id="projects">
                 <div class="container">
@@ -165,6 +147,25 @@
                 </div>
             </section>
         @endif
+
+        <section class="block" id="experience">
+            <div class="container">
+                <h2>Experience</h2>
+                @foreach ($experiences as $experience)
+                    <article class="entry {{ $isCompact($experience->finish_date) ? 'compact' : '' }}">
+                        <div class="when">{{ $period($experience->start_date, $experience->finish_date) }}</div>
+                        <div>
+                            <h3>{{ $experience->occupation }}</h3>
+                            <p class="org">{{ $experience->company }}</p>
+                            @unless ($isCompact($experience->finish_date))
+                                <x-rich-text :text="$experience->description" />
+                            @endunless
+                        </div>
+                    </article>
+                @endforeach
+            </div>
+        </section>
+
 
         @if ($skillGroups->isNotEmpty())
             <section class="block" id="skills">

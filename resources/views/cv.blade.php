@@ -10,6 +10,7 @@
     $strip = fn ($url) => preg_replace('#^https?://(www\.)?#', '', rtrim((string) $url, '/'));
     $github = $g('github', 'https://github.com/lexisvar');
     $linkedin = $g('linkedin', 'https://www.linkedin.com/in/lexisvar');
+    $pdfProjects = $projects->take(max(1, (int) $g('pdf_project_limit', '3')));
     $detailed = $experiences->reject(fn ($e) => $isCompact($e->finish_date));
     $earlier = $experiences->filter(fn ($e) => $isCompact($e->finish_date));
 @endphp
@@ -23,8 +24,8 @@
     <meta name="keywords" content="{{ $skillGroups->flatten()->pluck('name')->implode(', ') }}">
     {{-- Self-contained styles for dompdf (no flexbox/grid) and for /simple in a browser. --}}
     <style>
-        @page { margin: 34px 42px 44px; }
-        body { font-family: Helvetica, Arial, sans-serif; font-size: 9.6pt; line-height: 1.42; color: #1f2937; margin: 0; }
+        @page { margin: 30px 40px 40px; }
+        body { font-family: Helvetica, Arial, sans-serif; font-size: 9.5pt; line-height: 1.36; color: #1f2937; margin: 0; }
         a { color: #0f766e; text-decoration: none; }
         table { border-collapse: collapse; width: 100%; }
         td { vertical-align: top; padding: 0; }
@@ -36,7 +37,7 @@
         .rule { border-bottom: 1.5px solid #0f766e; margin: 10px 0 2px; }
         .rights { font-size: 8.8pt; color: #475569; margin-top: 4px; }
 
-        h2 { page-break-after: avoid; font-size: 9pt; text-transform: uppercase; letter-spacing: 1.2px; color: #0f766e; margin: 15px 0 6px; padding-bottom: 3px; border-bottom: 0.6px solid #cbd5e1; }
+        h2 { page-break-after: avoid; font-size: 9pt; text-transform: uppercase; letter-spacing: 1.2px; color: #0f766e; margin: 12px 0 5px; padding-bottom: 3px; border-bottom: 0.6px solid #cbd5e1; }
         h3 { font-size: 10.2pt; margin: 0; color: #0f172a; }
         p { margin: 0 0 4px; }
         ul { margin: 2px 0 2px 13px; padding: 0; }
@@ -99,6 +100,46 @@
         </table>
     @endif
 
+    <div style="page-break-inside: avoid;">
+    <h2>Education</h2>
+    @foreach ($educations as $education)
+        <div class="entry">
+            <table class="entry-head">
+                <tr>
+                    <td><h3>{{ $education->study_name }}</h3></td>
+                    <td class="date">{{ $period($education->start_date, $education->finish_date) }}</td>
+                </tr>
+            </table>
+            <div class="org">{{ $education->college }}@if ($education->study_title) · {{ $education->study_title }}@endif</div>
+            @if ($g('pdf_education_descriptions', '0') === '1')
+                <x-rich-text :text="$education->description" />
+            @endif
+        </div>
+    @endforeach
+    </div>
+
+    @if ($pdfProjects->isNotEmpty())
+        <h2>Recent Projects</h2>
+        @foreach ($pdfProjects as $project)
+            <div class="entry">
+                <table class="entry-head">
+                    <tr>
+                        <td><h3>{{ $project->name }}@if ($project->role) <span style="font-weight: normal; color: #475569;">· {{ $project->role }}</span>@endif</h3></td>
+                        <td class="date">@if ($project->start_date){{ $period($project->start_date, $project->finish_date) }}@endif</td>
+                    </tr>
+                </table>
+                <x-rich-text :text="$project->description" />
+                @if ($project->stackList() || $project->url || $project->repo_url)
+                    <div class="stack">
+                        @if ($project->stackList())<b>Stack:</b> {{ implode(', ', $project->stackList()) }}@endif
+                        @if ($project->url) · <a href="{{ $project->url }}">{{ $strip($project->url) }}</a>@endif
+                        @if ($project->repo_url) · <a href="{{ $project->repo_url }}">{{ $strip($project->repo_url) }}</a>@endif
+                    </div>
+                @endif
+            </div>
+        @endforeach
+    @endif
+
     <h2>Experience</h2>
     @foreach ($detailed as $experience)
         <div class="entry">
@@ -125,44 +166,6 @@
         </table>
     @endif
 
-    @if ($projects->isNotEmpty())
-        <h2>Projects</h2>
-        @foreach ($projects as $project)
-            <div class="entry">
-                <table class="entry-head">
-                    <tr>
-                        <td><h3>{{ $project->name }}@if ($project->role) <span style="font-weight: normal; color: #475569;">· {{ $project->role }}</span>@endif</h3></td>
-                        <td class="date">@if ($project->start_date){{ $period($project->start_date, $project->finish_date) }}@endif</td>
-                    </tr>
-                </table>
-                <x-rich-text :text="$project->description" />
-                @if ($project->stackList() || $project->url || $project->repo_url)
-                    <div class="stack">
-                        @if ($project->stackList())<b>Stack:</b> {{ implode(', ', $project->stackList()) }}@endif
-                        @if ($project->url) · <a href="{{ $project->url }}">{{ $strip($project->url) }}</a>@endif
-                        @if ($project->repo_url) · <a href="{{ $project->repo_url }}">{{ $strip($project->repo_url) }}</a>@endif
-                    </div>
-                @endif
-            </div>
-        @endforeach
-    @endif
 
-    <div style="page-break-inside: avoid;">
-    <h2>Education</h2>
-    @foreach ($educations as $education)
-        <div class="entry">
-            <table class="entry-head">
-                <tr>
-                    <td><h3>{{ $education->study_name }}</h3></td>
-                    <td class="date">{{ $period($education->start_date, $education->finish_date) }}</td>
-                </tr>
-            </table>
-            <div class="org">{{ $education->college }}@if ($education->study_title) · {{ $education->study_title }}@endif</div>
-            @if ($g('pdf_education_descriptions', '0') === '1')
-                <x-rich-text :text="$education->description" />
-            @endif
-        </div>
-    @endforeach
-    </div>
 </body>
 </html>

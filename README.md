@@ -58,6 +58,7 @@ Then sign in at `/login`.
 | `skill_categories` | Category order, comma separated (e.g. `Backend, Frontend & Mobile, Data, Cloud & DevOps`) |
 | `compact_before` | Year; roles that ended before it show as one line (keeps the PDF to about 2 pages) |
 | `pdf_summary` | Optional shorter summary for the PDF (defaults to `biography`) |
+| `pdf_project_limit` | How many projects the PDF lists (default 3; the website shows all) |
 | `contact_title`, `contact_text` | Text of the contact card |
 | `pdf_education_descriptions` | Set to `1` to include education descriptions in the PDF |
 

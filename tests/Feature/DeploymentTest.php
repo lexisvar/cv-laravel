@@ -81,4 +81,33 @@ class DeploymentTest extends TestCase
         $this->get('/health', ['X-Forwarded-Proto' => 'https', 'X-Forwarded-For' => '203.0.113.9'])->assertOk();
         $this->assertTrue(request()->isSecure());
     }
+
+    public function test_cv_content_loads_once_and_never_overwrites_edits(): void
+    {
+        $this->artisan('app:load-cv-content')->assertSuccessful();
+
+        $this->assertSame('Alexis Vargas', \App\Models\General::where('key', 'name')->value('value'));
+        $this->assertGreaterThan(5, \App\Models\Experience::count());
+        $this->assertSame('Caissify', \App\Models\Project::orderBy('sort_order')->value('name'));
+
+        // An edit made in the admin survives the next deploy.
+        \App\Models\General::where('key', 'name')->update(['value' => 'Edited']);
+        $this->artisan('app:load-cv-content')->assertSuccessful();
+        $this->assertSame('Edited', \App\Models\General::where('key', 'name')->value('value'));
+
+        $this->artisan('app:load-cv-content', ['--force' => true])->assertSuccessful();
+        $this->assertSame('Alexis Vargas', \App\Models\General::where('key', 'name')->value('value'));
+    }
+
+    public function test_cv_content_never_mentions_visas(): void
+    {
+        $this->artisan('app:load-cv-content')->assertSuccessful();
+
+        foreach (['/', '/simple'] as $url) {
+            $html = strtolower($this->get($url)->assertOk()->getContent());
+            foreach (['visa', '482', 'sponsor', 'work rights', '261313'] as $word) {
+                $this->assertStringNotContainsString($word, $html, "'{$word}' found on {$url}");
+            }
+        }
+    }
 }

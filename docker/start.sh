@@ -21,6 +21,7 @@ php artisan view:cache
 # Database: apply migrations, then create the admin user if configured.
 php artisan migrate --force
 php artisan app:create-admin
+php artisan app:load-cv-content
 
 chown -R www-data:www-data storage bootstrap/cache
 exec apache2-foreground
