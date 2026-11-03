@@ -21,6 +21,15 @@ use App\Models\Audit;
 |
 */
 
+Route::get('/health', function () {
+  try {
+    \Illuminate\Support\Facades\DB::select('select 1');
+  } catch (\Throwable $e) {
+    return response()->json(['status' => 'error', 'database' => 'unavailable'], 503);
+  }
+  return response()->json(['status' => 'ok']);
+})->name('health');
+
 Route::get('/', [MainController::class, 'index']);
 Route::get('/simple', [MainController::class, 'simple']);
 Route::get('/export', [MainController::class, 'createPDF'])->name('cv.export');

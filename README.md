@@ -61,6 +61,44 @@ Then sign in at `/login`.
 | `contact_title`, `contact_text` | Text of the contact card |
 | `pdf_education_descriptions` | Set to `1` to include education descriptions in the PDF |
 
+## Deploying to Railway
+
+The repo includes a `Dockerfile` (PHP 8.2 + Apache, admin assets built with Vite) and `railway.json` (health check `/health`). On every start the container caches config, routes and views, runs `php artisan migrate --force`, creates the admin user if needed, and starts Apache on Railway's `$PORT`.
+
+1. **New project** → **Deploy from GitHub repo** → `lexisvar/cv-laravel` (branch of your choice).
+2. **Add a MySQL database** to the project (MySQL keeps the existing data format).
+3. **Variables on the web service:**
+
+   | Variable | Value |
+   |---|---|
+   | `APP_KEY` | output of `php artisan key:generate --show` |
+   | `APP_URL` | `https://lexisvar.me` (or the `*.up.railway.app` URL while testing) |
+   | `APP_ENV` / `APP_DEBUG` | `production` / `false` (the image defaults) |
+   | `DB_CONNECTION` | `mysql` |
+   | `DATABASE_URL` | `${{MySQL.MYSQL_URL}}` |
+   | `ADMIN_EMAIL` / `ADMIN_PASSWORD` | admin login, created on first deploy if missing (never overwritten; 12+ characters) |
+   | `ADMIN_NAME` | optional |
+
+4. **Custom domain:** Settings → Networking → *Custom Domain* → `lexisvar.me`, then add the DNS record Railway shows at your registrar.
+
+### Moving the existing content
+
+1. Old host → phpMyAdmin → select the database → **Export** → *Quick* → **SQL**.
+2. Import it into Railway's MySQL (Railway → MySQL → *Connect* shows a public connection URL):
+
+   ```bash
+   mysql -h <host> -P <port> -u root -p railway < export.sql
+   ```
+
+3. Redeploy the web service. `migrate --force` adds only the new tables and columns (projects, skill categories); existing content is kept.
+
+### Building the image locally
+
+```bash
+docker build -t cv-laravel .
+docker run --rm -p 8080:8080 -e PORT=8080 -e APP_KEY=base64:... -e DB_CONNECTION=sqlite -e DB_DATABASE=/tmp/db.sqlite cv-laravel
+```
+
 ## Tests
 
 ```bash

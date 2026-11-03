@@ -59,6 +59,11 @@ return [
     'asset_url' => env('ASSET_URL'),
 
     /*
+    | Force https:// in generated URLs (set APP_FORCE_HTTPS=true on Railway).
+    */
+    'force_https' => (bool) env('APP_FORCE_HTTPS', env('APP_ENV') === 'production'),
+
+    /*
     |--------------------------------------------------------------------------
     | Application Timezone
     |--------------------------------------------------------------------------
