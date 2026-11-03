@@ -4,7 +4,8 @@ The source of [lexisvar.me](https://lexisvar.me), my online CV. It is a small La
 
 - **`/`**: the public portfolio page, with SEO/Open Graph meta tags and schema.org `Person` data
 - **`/simple`**: a single-column, printer- and ATS-friendly CV
-- **`/export`**: the same CV as a PDF, rendered server-side with dompdf
+- **`/export`**: the same CV as a PDF (download), rendered server-side with dompdf, with page numbers and document metadata
+- **`/cv.pdf`**: the PDF opened in the browser, a short link to share
 
 ## Features
 
@@ -20,7 +21,7 @@ The source of [lexisvar.me](https://lexisvar.me), my online CV. It is a small La
 
 ## Stack
 
-PHP 8 · Laravel 9 · Blade · Tailwind (admin) · Bootstrap / Now UI Kit (public page) · dompdf · MySQL/PostgreSQL (SQLite for tests)
+PHP 8 · Laravel 9 · Blade · hand-written CSS for the public page (no framework, light/dark, print styles) · Tailwind (admin) · dompdf · MySQL/PostgreSQL (SQLite for tests)
 
 ## Running locally
 
@@ -52,6 +53,12 @@ Then sign in at `/login`.
 | `meta_description` | Optional SEO description (defaults to the start of the biography) |
 | `github`, `linkedin` | Optional profile URLs (default to lexisvar) |
 | `show_phone` | Set to `0` to hide the phone number on the public page |
+| `show_photo` | Set to `0` to hide the portrait |
+| `highlights` | Key facts under About, one per line: `value \| label` (e.g. `10+ years \| building web software`) |
+| `skill_categories` | Category order, comma separated (e.g. `Backend, Frontend & Mobile, Data, Cloud & DevOps`) |
+| `compact_before` | Year; roles that ended before it show as one line (keeps the PDF to about 2 pages) |
+| `pdf_summary` | Optional shorter summary for the PDF (defaults to `biography`) |
+| `contact_title`, `contact_text` | Text of the contact card |
 | `pdf_education_descriptions` | Set to `1` to include education descriptions in the PDF |
 
 ## Tests

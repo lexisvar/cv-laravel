@@ -23,7 +23,8 @@ use App\Models\Audit;
 
 Route::get('/', [MainController::class, 'index']);
 Route::get('/simple', [MainController::class, 'simple']);
-Route::get('/export', [MainController::class, 'createPDF']);
+Route::get('/export', [MainController::class, 'createPDF'])->name('cv.export');
+Route::get('/cv.pdf', [MainController::class, 'createPDF'])->name('cv.pdf');
 
 Route::get('/dashboard', function () {
   return view('dashboard',['visits' => Audit::orderBy('created_at','desc')->get()]);

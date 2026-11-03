@@ -127,6 +127,38 @@ class PublicCvTest extends TestCase
         $this->assertStringContainsString('alexis-vargas-CV.pdf', $response->headers->get('Content-Disposition'));
     }
 
+    public function test_pdf_can_be_viewed_inline(): void
+    {
+        $this->seedCv();
+
+        $response = $this->get('/cv.pdf');
+
+        $response->assertOk();
+        $this->assertStringStartsWith('inline;', $response->headers->get('Content-Disposition'));
+        $this->assertStringStartsWith('%PDF', $response->getContent());
+    }
+
+    public function test_older_roles_can_be_condensed(): void
+    {
+        $this->seedCv();
+        General::create(['key' => 'compact_before', 'value' => '2023']);
+
+        $this->get('/simple')
+            ->assertOk()
+            ->assertSee('Earlier Experience')
+            ->assertDontSee('<li>Built REST APIs</li>', false);
+
+        $this->get('/')->assertOk()->assertDontSee('<li>Built REST APIs</li>', false);
+    }
+
+    public function test_highlights_are_rendered(): void
+    {
+        $this->seedCv();
+        General::create(['key' => 'highlights', 'value' => "10+ years | building web software\nmalformed line"]);
+
+        $this->get('/')->assertOk()->assertSee('10+ years')->assertSee('building web software')->assertDontSee('malformed line');
+    }
+
     public function test_visits_are_audited(): void
     {
         $this->get('/');
