@@ -29,22 +29,21 @@ return [
         'meta_description' => 'Software engineer in Sydney. Python/Django APIs, Vue/TypeScript, Flutter apps and real-time systems, plus 10 years of commercial PHP/Laravel and Ruby on Rails work.',
 
         'biography' => <<<'TEXT'
-I am a software engineer with about ten years of commercial experience (2012–2023) building web applications and APIs in PHP/Laravel and Ruby on Rails, with PostgreSQL, Elasticsearch and Vue.js.
+I build web, mobile and backend software end to end. Since 2025 I have designed, built and run Caissify on my own: a Django API with real-time features, a Vue web app, Flutter apps on the App Store and Google Play, and a Rust desktop app.
 
-Since June 2025 I have designed and built Caissify as its only engineer: a chess learning and tournament platform with a Django REST API, a Vue 3 web app, Flutter apps on the App Store and Google Play, and an offline-first desktop app for tournament arbiters. Part of this work is caissify-pairings, an open-source FIDE pairing engine published on PyPI.
+Before that, I spent ten years building production web applications and APIs in PHP/Laravel and Ruby on Rails.
 
-I am looking for a backend or full-stack role in a product team where I can contribute quickly.
-- Backend: Python, Django, Django REST Framework, Celery, Django Channels, PostgreSQL, Redis
-- Frontend and mobile: Vue 3, TypeScript, React, Flutter
-- How I work: CI on every repository, staging before production, written guidelines for AI coding agents, and I review and own every change
+I work with AI coding agents (Claude Code, Cursor) every day, with written rules, CI and code review, so I move fast without losing quality.
+
+Chess is where Caissify started: I am a chess player and coach, which gave me the domain knowledge behind its open-source FIDE pairing engine.
 TEXT,
 
         'pdf_summary' => <<<'TEXT'
-Backend-leaning full-stack engineer with about ten years of commercial PHP/Laravel and Ruby on Rails experience (2012–2023). Since June 2025 I have built and shipped Caissify as its only engineer: a Django/DRF API with Celery and WebSockets, a Vue 3/TypeScript web app, Flutter apps on the App Store and Google Play, and a Rust/Tauri desktop app. I wrote and published caissify-pairings on PyPI, a FIDE Dutch Swiss pairing engine that showed 0 discrepancies against bbpPairings across 10,000 simulated tournaments. I use Claude Code and Cursor daily, with written agent rules, CI, staging-first releases and my own review of every change.
+Software engineer who builds web, mobile and backend systems end to end. Since 2025 I have designed, built and run Caissify on my own: a Django/DRF API with Celery and WebSockets, a Vue 3/TypeScript web app, Flutter apps on the App Store and Google Play, and a Rust/Tauri desktop app. Its open-source FIDE pairing engine (caissify-pairings on PyPI) showed 0 discrepancies against bbpPairings across 10,000 simulated tournaments. Before that, ten years building production web applications and APIs in PHP/Laravel and Ruby on Rails. I work with Claude Code and Cursor every day, with written rules, CI and code review. Chess player and coach.
 TEXT,
 
         'highlights' => <<<'TEXT'
-10 years | commercial web development, 2012–2023
+10+ years | building production web software
 4 platforms | web, iOS, Android and desktop, built solo
 10,000 tournaments | pairing engine checked against FIDE's reference engine
 TEXT,
@@ -132,6 +131,7 @@ TEXT,
             'role' => 'Founder & Lead Engineer (self-directed)',
             'url' => 'https://caissify.com',
             'repo_url' => null,
+            'links' => "App Store | https://apps.apple.com/us/app/caissify/id6755508097\nGoogle Play | https://play.google.com/store/apps/details?id=com.caissify.chess",
             'stack' => 'Python, Django, Django REST Framework, Celery, Django Channels, PostgreSQL, Redis, Vue 3, TypeScript, Flutter, Rust, Tauri, Docker, Railway, GitHub Actions',
             'start_date' => '2025-06-01',
             'finish_date' => null,

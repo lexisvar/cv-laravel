@@ -129,10 +129,11 @@
                     </tr>
                 </table>
                 <x-rich-text :text="$project->description" />
-                @if ($project->stackList() || $project->url || $project->repo_url)
+                @if ($project->stackList() || $project->url || $project->repo_url || $project->linkList())
                     <div class="stack">
                         @if ($project->stackList())<b>Stack:</b> {{ implode(', ', $project->stackList()) }}@endif
                         @if ($project->url) · <a href="{{ $project->url }}">{{ $strip($project->url) }}</a>@endif
+                        @foreach ($project->linkList() as $link) · <a href="{{ $link['url'] }}">{{ $link['label'] }}</a>@endforeach
                         @if ($project->repo_url) · <a href="{{ $project->repo_url }}">{{ $strip($project->repo_url) }}</a>@endif
                     </div>
                 @endif

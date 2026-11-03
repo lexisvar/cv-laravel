@@ -21,6 +21,7 @@ class ProjectRequest extends FormRequest
             'start_date' => ['nullable', 'date'],
             'finish_date' => ['nullable', 'date', 'after_or_equal:start_date'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
+            'links' => ['nullable', 'string', 'max:2000'],
         ];
     }
 }

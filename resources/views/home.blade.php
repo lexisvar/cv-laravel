@@ -42,7 +42,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="{{ asset('css/site.css') }}?v=2" rel="stylesheet">
+    <link href="{{ asset('css/site.css') }}?v=3" rel="stylesheet">
     <script type="application/ld+json">
       {!! json_encode([
           '@context' => 'https://schema.org',
@@ -135,9 +135,10 @@
                                         @foreach ($project->stackList() as $tech)<li>{{ $tech }}</li>@endforeach
                                     </ul>
                                 @endif
-                                @if ($project->url || $project->repo_url)
+                                @if ($project->url || $project->repo_url || $project->linkList())
                                     <div class="links">
                                         @if ($project->url)<a href="{{ $project->url }}" rel="noopener" target="_blank">Visit site ↗</a>@endif
+                                        @foreach ($project->linkList() as $link)<a href="{{ $link['url'] }}" rel="noopener" target="_blank">{{ $link['label'] }} ↗</a>@endforeach
                                         @if ($project->repo_url)<a href="{{ $project->repo_url }}" rel="noopener" target="_blank">Source code ↗</a>@endif
                                     </div>
                                 @endif

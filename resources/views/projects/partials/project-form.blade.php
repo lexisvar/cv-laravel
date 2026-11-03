@@ -37,6 +37,12 @@
       <x-input-error class="mt-2" :messages="$errors->get('description')" />
     </div>
 
+    <div>
+      <x-input-label for="links" :value="__('Extra links (one per line: Label | https://...)')" />
+      <textarea id="links" name="links" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" placeholder="App Store | https://apps.apple.com/...">{{ old('links', $project?->links) }}</textarea>
+      <x-input-error class="mt-2" :messages="$errors->get('links')" />
+    </div>
+
     <div class="flex items-center gap-4">
       <x-primary-button>{{ __('Save') }}</x-primary-button>
       @if (session('status') === 'project-updated')

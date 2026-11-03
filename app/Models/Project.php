@@ -19,6 +19,7 @@ class Project extends Model
         'start_date',
         'finish_date',
         'sort_order',
+        'links',
     ];
 
     /**
@@ -29,5 +30,23 @@ class Project extends Model
     public function stackList(): array
     {
         return array_values(array_filter(array_map('trim', explode(',', (string) $this->stack))));
+    }
+
+    /**
+     * Extra links, one per line: "Label | https://...". Only http(s) URLs are kept.
+     *
+     * @return array<int, array{label: string, url: string}>
+     */
+    public function linkList(): array
+    {
+        $links = [];
+        foreach (preg_split('/\R/', (string) $this->links) as $line) {
+            $parts = array_map('trim', explode('|', $line, 2));
+            if (count($parts) === 2 && $parts[0] !== '' && preg_match('#^https?://#i', $parts[1])) {
+                $links[] = ['label' => $parts[0], 'url' => $parts[1]];
+            }
+        }
+
+        return $links;
     }
 }
