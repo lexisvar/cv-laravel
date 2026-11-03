@@ -3,6 +3,9 @@
 set -e
 
 export PORT="${PORT:-8080}"
+
+# mod_php needs the prefork MPM; Apache refuses to start if more than one MPM is enabled.
+rm -f /etc/apache2/mods-enabled/mpm_event.* /etc/apache2/mods-enabled/mpm_worker.*
 cd /var/www/html
 
 if [ -z "$APP_KEY" ]; then
