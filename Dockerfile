@@ -8,7 +8,7 @@ ARG COMPOSER_IMAGE=composer:2
 FROM ${NODE_IMAGE} AS assets
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm ci --no-audit --no-fund
+RUN npm ci --no-audit --no-fund && test -x node_modules/.bin/vite
 COPY vite.config.js tailwind.config.js postcss.config.js ./
 COPY resources ./resources
 RUN npm run build

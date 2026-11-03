@@ -96,7 +96,11 @@ The repo includes a `Dockerfile` (PHP 8.2 + Apache, admin assets built with Vite
 
 ```bash
 docker build -t cv-laravel .
-docker run --rm -p 8080:8080 -e PORT=8080 -e APP_KEY=base64:... -e DB_CONNECTION=sqlite -e DB_DATABASE=/tmp/db.sqlite cv-laravel
+docker run --rm -p 8080:8080 -e PORT=8080 -e APP_KEY="$(php artisan key:generate --show)" \
+  -e DB_CONNECTION=sqlite -e DB_DATABASE=/var/www/html/storage/db.sqlite \
+  -e ADMIN_EMAIL=you@example.com -e ADMIN_PASSWORD=a-long-password \
+  --entrypoint sh cv-laravel -c 'touch storage/db.sqlite && chown www-data storage/db.sqlite && exec docker/start.sh'
+# then open http://localhost:8080
 ```
 
 ## Tests
