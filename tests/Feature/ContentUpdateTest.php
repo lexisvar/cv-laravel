@@ -65,4 +65,43 @@ class ContentUpdateTest extends TestCase
 
         $this->assertSame([['label' => 'Good', 'url' => 'https://example.com']], $project->linkList());
     }
+
+    public function test_education_shows_only_the_completion_date(): void
+    {
+        $this->artisan('app:load-cv-content')->assertSuccessful();
+
+        foreach (['/', '/simple'] as $url) {
+            $this->get($url)->assertOk()
+                ->assertSee('Bachelor of Systems Engineering')
+                ->assertSee('Oct 2026')
+                ->assertDontSee('2009');
+        }
+    }
+
+    public function test_existing_degree_loses_its_start_year(): void
+    {
+        \App\Models\Education::create([
+            'study_name' => 'Bachelor of Systems Engineering', 'study_title' => 'Ingeniero de Sistemas',
+            'college' => 'Remington', 'start_date' => '2009-08-01', 'finish_date' => '2026-10-30',
+            'description' => 'Degree completed while working in industry. Conferred 30 October 2026.',
+        ]);
+
+        (require database_path('migrations/2026_11_04_000003_make_education_start_date_optional.php'))->up();
+
+        $degree = \App\Models\Education::first();
+        $this->assertNull($degree->start_date);
+        $this->assertSame('', $degree->description);
+    }
+
+    public function test_admin_can_save_education_without_a_start_date(): void
+    {
+        $user = \App\Models\User::factory()->create();
+
+        $this->actingAs($user)->post('/education/create', [
+            'study_name' => 'Bachelor', 'study_title' => 'Ingeniero', 'college' => 'Remington',
+            'finish_date' => '2026-10-30', 'description' => 'x',
+        ])->assertSessionHasNoErrors();
+
+        $this->assertNull(\App\Models\Education::first()->start_date);
+    }
 }

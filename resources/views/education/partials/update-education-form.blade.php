@@ -32,7 +32,7 @@
       </div>
 
       <div>
-        <x-input-label for="start_date" :value="__('Start Date')" />
+        <x-input-label for="start_date" :value="__('Start Date (optional; leave empty to show only the completion date)')" />
         <x-text-input id="start_date" name="start_date" type="date" class="mt-1 block w-full" :value="old('start_date', $education->start_date)" required autocomplete="start_date" />
         <x-input-error class="mt-2" :messages="$errors->get('start_date')" />
       </div>

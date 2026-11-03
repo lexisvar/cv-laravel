@@ -73,7 +73,7 @@ class MainController extends Controller
             'skillGroups' => $this->groupSkills($skills, $generals['skill_categories'] ?? null),
             'experiences' => Experience::orderByDesc('start_date')->get(),
             'projects' => Project::orderBy('sort_order')->orderByDesc('start_date')->get(),
-            'educations' => Education::orderByDesc('start_date')->get(),
+            'educations' => Education::orderByDesc('finish_date')->orderByDesc('start_date')->get(),
         ];
     }
 

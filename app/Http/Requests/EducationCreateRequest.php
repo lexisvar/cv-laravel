@@ -14,7 +14,7 @@ class EducationCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-          'start_date' => ['string', 'max:255'],
+          'start_date' => ['nullable', 'date'],
           'finish_date' => ['string', 'max:255'],
           'study_name' => ['string', 'max:255'],
           'study_title' => ['string', 'max:255'],
