@@ -8,6 +8,7 @@ use App\Models\Experience;
 use App\Models\General;
 use App\Models\Project;
 use App\Models\Skill;
+use App\Support\VisitClassifier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use PDF;
@@ -98,13 +99,33 @@ class MainController extends Controller
             ]);
     }
 
+    /**
+     * Log a page view. The owner's own visits (logged in to the admin) are
+     * not logged; bots and link previews are labelled so they can be
+     * filtered out on the dashboard.
+     */
     private function audit(string $function): void
     {
+        if (auth()->check()) {
+            return;
+        }
+
+        $request = request();
+        $userAgent = Str::limit((string) $request->header('User-Agent'), 250, '');
+        $class = VisitClassifier::classify($userAgent);
+
         Audit::create([
-            'ip' => request()->getClientIp(),
+            'ip' => VisitClassifier::maskIp($request->getClientIp()),
+            'ip_hash' => VisitClassifier::hashIp($request->getClientIp()),
             'controller' => 'Main',
             'function' => $function,
-            'uagent' => Str::limit((string) request()->header('User-Agent'), 250, ''),
+            'uagent' => $userAgent,
+            'type' => $class['type'],
+            'agent' => $class['agent'],
+            'referrer' => VisitClassifier::referrer($request->headers->get('referer'), $request->getHost()),
+            'device' => VisitClassifier::device($userAgent),
+            'browser' => VisitClassifier::browser($userAgent),
+            'os' => VisitClassifier::os($userAgent),
         ]);
     }
 }

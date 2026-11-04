@@ -22,6 +22,7 @@ php artisan view:cache
 php artisan migrate --force
 php artisan app:create-admin || echo "app:create-admin did not create the admin user (see message above); the site starts anyway." >&2
 php artisan app:load-cv-content
+php artisan app:prune-visits || true
 
 chown -R www-data:www-data storage bootstrap/cache
 exec apache2-foreground

@@ -15,6 +15,25 @@ class Audit extends Model
       'ip',
       'controller',
       'function',
-      'uagent'
+      'uagent',
+      'ip_hash',
+      'type',
+      'agent',
+      'referrer',
+      'device',
+      'browser',
+      'os',
     ];
+
+    public const PAGES = [
+      'index' => 'Home page',
+      'simple' => 'Plain CV',
+      'viewPDF' => 'PDF (viewed)',
+      'createPDF' => 'PDF (downloaded)',
+    ];
+
+    public function pageLabel(): string
+    {
+      return self::PAGES[$this->function] ?? $this->function;
+    }
 }

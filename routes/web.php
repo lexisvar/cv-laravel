@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\SkillsController;
 use App\Http\Controllers\ExperienceController;
@@ -8,7 +9,6 @@ use App\Http\Controllers\EducationController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Audit;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,9 +35,7 @@ Route::get('/simple', [MainController::class, 'simple']);
 Route::get('/export', [MainController::class, 'createPDF'])->name('cv.export');
 Route::get('/cv.pdf', [MainController::class, 'createPDF'])->name('cv.pdf');
 
-Route::get('/dashboard', function () {
-  return view('dashboard',['visits' => Audit::orderBy('created_at','desc')->get()]);
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
