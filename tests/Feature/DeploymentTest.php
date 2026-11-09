@@ -110,4 +110,12 @@ class DeploymentTest extends TestCase
             }
         }
     }
+
+    public function test_links_use_the_main_domain_in_production(): void
+    {
+        config(['app.force_https' => true, 'app.url' => 'https://lexisvar.me']);
+        (new \App\Providers\AppServiceProvider($this->app))->boot();
+
+        $this->assertSame('https://lexisvar.me/cv.pdf', URL::to('/cv.pdf'));
+    }
 }
