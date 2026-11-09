@@ -65,15 +65,15 @@ TEXT,
 TEXT,
         ],
         [
-            'occupation' => 'Ruby on Rails Developer',
-            'company' => 'Shore',
-            'start_date' => '2022-02-01',
-            'finish_date' => '2023-03-01',
+            'occupation' => 'Solution Engineer / Product Engineer',
+            'company' => 'Shore Consulting Group · Toronto, Canada (remote, contract)',
+            'start_date' => '2022-02-14',
+            'finish_date' => '2024-01-31',
             'description' => <<<'TEXT'
-- Developed and maintained features in a Ruby on Rails SaaS platform
-- Wrote complex PostgreSQL queries and reports, and connected them to Vue.js front ends
-- Implemented Elasticsearch-backed search
-- Worked in sprints with Jira, pull-request code review and CI in an Agile team
+- Joined as Solution Developer and progressed to Solution Engineer / Product Engineer, working on several client projects at once
+- Built and maintained applications in Ruby on Rails and Python/Django, with Vue.js and React front ends
+- Wrote complex PostgreSQL queries and reports, and implemented Elasticsearch-backed search
+- Wrote unit and integration tests, reviewed peers' code, supported DevOps on Linux and documented solutions in GitLab
 TEXT,
         ],
         [

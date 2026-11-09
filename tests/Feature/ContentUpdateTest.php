@@ -104,4 +104,47 @@ class ContentUpdateTest extends TestCase
 
         $this->assertNull(\App\Models\Education::first()->start_date);
     }
+
+    public function test_shore_placeholder_is_replaced_with_contract_details(): void
+    {
+        \App\Models\Experience::create([
+            'occupation' => 'Ruby on Rails Developer', 'company' => 'Shore',
+            'start_date' => '2022-02-01', 'finish_date' => '2023-03-01', 'description' => '- old',
+        ]);
+        $migration = database_path('migrations/2026_11_09_000001_update_shore_experience.php');
+
+        (require $migration)->up();
+
+        $shore = \App\Models\Experience::first();
+        $this->assertSame('Solution Engineer / Product Engineer', $shore->occupation);
+        $this->assertStringStartsWith('Shore Consulting Group', $shore->company);
+        $this->assertStringStartsWith('2022-02-14', (string) $shore->start_date);
+        $this->assertStringStartsWith('2024-01-31', (string) $shore->finish_date);
+        $this->assertStringContainsString('Python/Django', $shore->description);
+    }
+
+    public function test_edited_shore_entry_is_left_alone(): void
+    {
+        \App\Models\Experience::create([
+            'occupation' => 'My own title', 'company' => 'Shore',
+            'start_date' => '2022-02-01', 'finish_date' => '2023-03-01', 'description' => '- mine',
+        ]);
+
+        (require database_path('migrations/2026_11_09_000001_update_shore_experience.php'))->up();
+
+        $this->assertSame('My own title', \App\Models\Experience::first()->occupation);
+    }
+
+    public function test_shore_details_appear_on_site_and_pdf_page(): void
+    {
+        $this->artisan('app:load-cv-content')->assertSuccessful();
+
+        foreach (['/', '/simple'] as $url) {
+            $this->get($url)->assertOk()
+                ->assertSee('Solution Engineer / Product Engineer')
+                ->assertSee('Shore Consulting Group')
+                ->assertSee('Feb 2022')
+                ->assertSee('Jan 2024');
+        }
+    }
 }
