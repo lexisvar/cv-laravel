@@ -51,7 +51,7 @@ TEXT,
 TEXT,
 
         'contact_title' => "Let's talk",
-        'contact_text' => 'I am open to backend and full-stack engineering roles in Sydney. I am happy to walk you through the Caissify code or the pairing engine. The quickest way to reach me is by email.',
+        'contact_text' => 'I am open to backend and full-stack engineering roles in Sydney, and happy to talk about how I can help your team. The quickest way to reach me is by email.',
     ],
 
     'experiences' => [

@@ -202,4 +202,18 @@ class ContentUpdateTest extends TestCase
         $this->assertStringContainsString('AWS', $bio);
         $this->assertSame('My own summary', \App\Models\General::where('key', 'pdf_summary')->value('value'));
     }
+
+    public function test_contact_text_names_no_project(): void
+    {
+        $migration = require database_path('migrations/2026_11_10_000004_update_contact_text.php');
+        $previous = (new \ReflectionClassConstant($migration, 'PREVIOUS'))->getValue();
+        \App\Models\General::create(['key' => 'contact_text', 'value' => $previous]);
+
+        $migration->up();
+
+        $text = \App\Models\General::where('key', 'contact_text')->value('value');
+        $this->assertStringNotContainsString('Caissify', $text);
+        $this->assertStringNotContainsString('pairing', $text);
+        $this->assertStringContainsString('backend and full-stack', $text);
+    }
 }
