@@ -147,4 +147,19 @@ class ContentUpdateTest extends TestCase
                 ->assertSee('Jan 2024');
         }
     }
+
+    public function test_caissify_description_is_upgraded_to_version_2(): void
+    {
+        $file = database_path('migrations/2026_11_10_000001_update_caissify_v2.php');
+        $migration = require $file;
+        $original = (new \ReflectionClassConstant($migration, 'ORIGINAL'))->getValue();
+
+        \App\Models\Project::create(['name' => 'Caissify', 'description' => $original, 'sort_order' => 1]);
+        \App\Models\Project::create(['name' => 'Other', 'description' => 'untouched', 'sort_order' => 2]);
+
+        $migration->up();
+
+        $this->assertStringContainsString('Version 2.0', \App\Models\Project::where('name', 'Caissify')->value('description'));
+        $this->assertSame('untouched', \App\Models\Project::where('name', 'Other')->value('description'));
+    }
 }

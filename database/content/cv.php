@@ -137,13 +137,12 @@ TEXT,
             'finish_date' => null,
             'sort_order' => 1,
             'description' => <<<'TEXT'
-Chess learning and tournament platform that I designed and built as the only engineer: about 2,000 commits across 12 repositories since June 2025.
-- Django 5.2 / DRF API with about 330 API operations and about 1,050 tests, running on Railway as four services from one Docker image (web, Celery worker, Celery beat, WebSockets). CI runs the tests against PostgreSQL and Redis.
-- Real-time live lessons and games on Django Channels: room state in Redis, every event stored in a PostgreSQL event log, and state rebuilt from the log after a restart.
-- Flutter app for iOS and Android, live on the App Store and Google Play, in English and Spanish, with push notifications and on-device Stockfish analysis.
-- Vue 3 + TypeScript web app with Stockfish compiled to WebAssembly in a Web Worker and an OpenAPI-generated API client.
-- Offline-first desktop app for tournament arbiters that syncs with the API through idempotency keys, so a retried request never applies twice.
-- Own Glicko-2 rating implementation for puzzles and players, checked against Glickman's published worked example.
+Chess platform for playing, learning and coaching that I designed and built as the only engineer: about 2,000 commits across 12 repositories since June 2025. Version 2.0 is live on Google Play and the App Store, in English and Spanish.
+- Real-time play on Django Channels: a lobby with instant pairing, live clocks, premoves, automatic reconnection, spectator chat, and Rush tournaments with live standings
+- Live coaching: coaches drive a shared board in real time, set homework and manage student groups, with child-safety features built in (kid mode, parental consent)
+- Django 5.2 / DRF API with about 330 API operations and about 1,050 tests, running on Railway as four services (web, Celery worker, Celery beat, WebSockets); room state in Redis with a PostgreSQL event log
+- Flutter app for iOS and Android with 545 automated tests in CI, and a Vue 3 + TypeScript web app with Stockfish compiled to WebAssembly
+- Offline-first Rust/Tauri desktop app for tournament arbiters that syncs through idempotency keys; own Glicko-2 rating implementation
 TEXT,
         ],
         [
