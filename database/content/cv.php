@@ -29,9 +29,11 @@ return [
         'meta_description' => 'Software engineer in Sydney. Python/Django APIs, Vue/TypeScript, Flutter apps and real-time systems, plus 10 years of commercial PHP/Laravel and Ruby on Rails work.',
 
         'biography' => <<<'TEXT'
-I build web, mobile and backend software end to end. Since 2025 I have designed, built and run Caissify on my own: a Django API with real-time features, a Vue web app, Flutter apps on Google Play and the App Store, and a Rust desktop app, deployed on Railway with CI, staging and production.
+I build web, mobile and backend software end to end. What I enjoy most is backend and infrastructure work: APIs, Linux servers, deployment and cloud platforms such as AWS and Railway.
 
-Before that, I spent ten years building production web applications and APIs, most recently as a Solution Engineer at Shore Consulting Group in Toronto, working in Ruby on Rails, Python/Django, Vue and React across several client projects.
+Since 2025 I have designed, built and run Caissify on my own: a Django API with real-time features, a Vue web app, Flutter apps on Google Play and the App Store, and a Rust desktop app, deployed on Railway with CI, staging and production.
+
+I started in 2012, when CodeIgniter was one of the most popular PHP frameworks and Laravel was becoming the standard for PHP. Since then I have built production web applications and APIs in Laravel, Ruby on Rails and Django, most recently as a Solution Engineer at Shore Consulting Group in Toronto, across several client projects with Vue and React front ends.
 
 I work with AI coding agents (Claude Code, Cursor) every day, with written rules, CI and code review, so I move fast without losing quality.
 
@@ -39,7 +41,7 @@ Chess is where Caissify started: I am a chess player and coach.
 TEXT,
 
         'pdf_summary' => <<<'TEXT'
-Software engineer who builds web, mobile and backend systems end to end. Most recently a Solution Engineer at Shore Consulting Group (Toronto), building client solutions in Ruby on Rails, Python/Django, Vue and React. Since 2025 I have designed, built and run Caissify on my own: a Django/DRF API with Celery and WebSockets on Railway (web, worker, scheduler and real-time services; CI, staging and production), a Vue 3/TypeScript web app, Flutter apps on Google Play and the App Store, and a Rust/Tauri desktop app. Ten years of production experience with Rails, Django and Laravel. I work with Claude Code and Cursor every day, with written rules, CI and code review.
+Backend-focused software engineer who builds web, mobile and backend systems end to end; what I enjoy most is backend and infrastructure work (APIs, Linux servers, deployment, AWS and Railway). Most recently a Solution Engineer at Shore Consulting Group (Toronto), building client solutions in Ruby on Rails, Python/Django, Vue and React. Since 2025 I have designed, built and run Caissify on my own: a Django/DRF API with Celery and WebSockets on Railway (web, worker, scheduler and real-time services; CI, staging and production), a Vue 3/TypeScript web app, Flutter apps on Google Play and the App Store, and a Rust/Tauri desktop app. I started in 2012 with PHP (CodeIgniter, then Laravel) and later Rails and Django. I work with Claude Code and Cursor every day, with written rules, CI and code review.
 TEXT,
 
         'highlights' => <<<'TEXT'

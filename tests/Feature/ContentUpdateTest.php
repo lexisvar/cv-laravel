@@ -186,4 +186,20 @@ class ContentUpdateTest extends TestCase
         $this->assertSame(1, \App\Models\Project::where('name', 'caissify-pairings')->count());
         $this->assertStringNotContainsString('10,000', \App\Models\Project::where('name', 'caissify-pairings')->value('description'));
     }
+
+    public function test_backend_focus_and_history_are_added(): void
+    {
+        $migration = require database_path('migrations/2026_11_10_000003_add_backend_focus_and_history.php');
+        $previous = (new \ReflectionClassConstant($migration, 'PREVIOUS'))->getValue();
+        \App\Models\General::create(['key' => 'biography', 'value' => $previous['biography']]);
+        \App\Models\General::create(['key' => 'pdf_summary', 'value' => 'My own summary']);
+
+        $migration->up();
+
+        $bio = \App\Models\General::where('key', 'biography')->value('value');
+        $this->assertStringContainsString('backend and infrastructure work', $bio);
+        $this->assertStringContainsString('CodeIgniter', $bio);
+        $this->assertStringContainsString('AWS', $bio);
+        $this->assertSame('My own summary', \App\Models\General::where('key', 'pdf_summary')->value('value'));
+    }
 }
