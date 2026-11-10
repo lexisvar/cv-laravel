@@ -159,7 +159,31 @@ class ContentUpdateTest extends TestCase
 
         $migration->up();
 
-        $this->assertStringContainsString('Version 2.0', \App\Models\Project::where('name', 'Caissify')->value('description'));
+        $this->assertStringContainsStringIgnoringCase('version 2.0', \App\Models\Project::where('name', 'Caissify')->value('description'));
         $this->assertSame('untouched', \App\Models\Project::where('name', 'Other')->value('description'));
+    }
+
+    public function test_cv_is_refocused_on_experience_and_infrastructure(): void
+    {
+        $migration = require database_path('migrations/2026_11_10_000002_refocus_cv_on_experience.php');
+        $previous = (new \ReflectionClassConstant($migration, 'PREVIOUS'))->getValue();
+
+        foreach ($previous['generals'] as $key => $value) {
+            \App\Models\General::create(['key' => $key, 'value' => $value]);
+        }
+        \App\Models\General::where('key', 'highlights')->update(['value' => 'Edited | by me']);
+        \App\Models\Project::create(['name' => 'Caissify', 'description' => $previous['caissify'], 'sort_order' => 1]);
+        \App\Models\Project::create(['name' => $previous['pairings_name'], 'description' => $previous['pairings'], 'sort_order' => 2]);
+
+        $migration->up();
+
+        $bio = \App\Models\General::where('key', 'biography')->value('value');
+        $this->assertStringContainsString('Shore Consulting Group', $bio);
+        $this->assertStringNotContainsString('pairing engine', $bio);
+        $this->assertSame('Edited | by me', \App\Models\General::where('key', 'highlights')->value('value'));
+        $this->assertStringContainsString('Infrastructure:', \App\Models\Project::where('name', 'Caissify')->value('description'));
+        $this->assertStringContainsString('Google Play first', \App\Models\Project::where('name', 'Caissify')->value('description'));
+        $this->assertSame(1, \App\Models\Project::where('name', 'caissify-pairings')->count());
+        $this->assertStringNotContainsString('10,000', \App\Models\Project::where('name', 'caissify-pairings')->value('description'));
     }
 }
